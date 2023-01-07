@@ -1,4 +1,4 @@
-# Attendo Admin
+# Schello Admin
 
 ## Available Scripts
 
