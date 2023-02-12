@@ -1,10 +1,9 @@
 {
-    "apiKey": "AIzaSyAjJs7-_azfjBRNPMiSOH4O9l0FwvLyJAE",
-    "authDomain": "attendo-gcp.firebaseapp.com",
-    "databaseURL": "https://attendo-gcp-default-rtdb.firebaseio.com",
-    "projectId": "attendo-gcp",
-    "storageBucket": "attendo-gcp.appspot.com",
-    "messagingSenderId": "691816496645",
-    "appId": "1:691816496645:web:26537b8c7e3f38f502666c",
-    "measurementId": "G-L3QV7MWPJ2"
+    "apiKey": "AIzaSyCsV-3C_U3ksRXdsZorW9RXy7PifGTR52w",
+    "authDomain": "merit-werb.firebaseapp.com",
+    "projectId": "merit-werb",
+    "storageBucket": "merit-werb.appspot.com",
+    "messagingSenderId": "1023193104645",
+    "appId": "1:1023193104645:web:c569ccf902442e2402f76c",
+    "measurementId": "G-GHVRHTZN0E"
 }
