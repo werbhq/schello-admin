@@ -1,16 +1,16 @@
 import { RichTextInput } from "ra-input-rich-text";
 import {
   BooleanInput,
-  Create,
   DateInput,
+  Edit,
   SelectInput,
   SimpleForm,
   TextInput,
   TimeInput,
 } from "react-admin";
 
-const EventCreate = () => (
-  <Create>
+const EventEdit = () => (
+  <Edit>
     <SimpleForm>
       <SelectInput
         source="mode"
@@ -30,7 +30,7 @@ const EventCreate = () => (
       <TextInput source="register_url" />
       <BooleanInput source="visible" required />
     </SimpleForm>
-  </Create>
+  </Edit>
 );
 
-export default EventCreate;
+export default EventEdit;
