@@ -8,18 +8,12 @@ import {
   TextInput,
   TimeInput,
 } from "react-admin";
+import { eventModes } from "./Constants";
 
 const EventCreate = () => (
   <Create>
     <SimpleForm>
-      <SelectInput
-        source="mode"
-        choices={[
-          { id: "VIRTUAL", name: "VIRTUAL" },
-          { id: "OFFLINE", name: "OFFLINE" },
-        ]}
-        required
-      />
+      <SelectInput source="mode" choices={eventModes} required />
       <TextInput source="title" required />
       <DateInput source="date_from" required />
       <DateInput source="date_to" required />
@@ -27,7 +21,7 @@ const EventCreate = () => (
       <TimeInput source="time_to" required />
       <RichTextInput source="description" required />
       <TextInput source="venue" required />
-      <TextInput source="register_url" />
+      <TextInput source="register_url" defaultValue={null} />
       <BooleanInput source="visible" required />
     </SimpleForm>
   </Create>

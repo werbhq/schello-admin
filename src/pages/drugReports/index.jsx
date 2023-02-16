@@ -1,4 +1,4 @@
-import icon from "@mui/icons-material/Article";
+import icon from "@mui/icons-material/Vaccines";
 import DrugList from "./List";
 
 import { MAPPING } from "../../provider/mapping";

@@ -2,25 +2,18 @@ import {
   Datagrid,
   TextField,
   List,
-  SearchInput,
-  TextInput,
   DateField,
   ImageField,
   ChipField,
   useAuthProvider,
 } from "react-admin";
 
-const filters = [
-  <SearchInput source="id" alwaysOn resettable />,
-  <TextInput source="totalSemesters" label="Total Semesters" resettable />,
-];
-
 const DrugList = () => {
   const authProvider = useAuthProvider();
   authProvider.getPermissions().then((e) => console.log(e));
 
   return (
-    <List exporter={false} filters={filters}>
+    <List>
       <Datagrid rowClick="show">
         <DateField source="dateIncident" />
         <DateField source="timeFrom" />

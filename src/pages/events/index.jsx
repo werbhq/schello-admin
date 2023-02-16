@@ -1,4 +1,4 @@
-import icon from "@mui/icons-material/Article";
+import icon from "@mui/icons-material/Event";
 import { MAPPING } from "../../provider/mapping";
 import EventList from "./List";
 import EventShow from "./Show";
