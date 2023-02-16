@@ -5,13 +5,9 @@ import {
   DateField,
   ImageField,
   ChipField,
-  useAuthProvider,
 } from "react-admin";
 
 const DrugList = () => {
-  const authProvider = useAuthProvider();
-  authProvider.getPermissions().then((e) => console.log(e));
-
   return (
     <List>
       <Datagrid rowClick="show">

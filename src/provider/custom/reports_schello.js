@@ -15,7 +15,7 @@ export const DrugReportsProvider = {
    * @returns {Promise<import("react-admin").GetListResult>}
    * */
   getList: async (resource, params) => {
-    const response = await getReports("mak@test", 5);
+    const response = await getReports("mak@test");
 
     return {
       data: response ?? [],
