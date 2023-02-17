@@ -10,6 +10,7 @@
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^14.2.0",
     "axios": "^1.2.2",
+    "crypto-js": "^4.1.1",
     "firebase": "^9.7.0",
     "prop-types": "^15.8.1",
     "ra-input-rich-text": "^4.7.5",

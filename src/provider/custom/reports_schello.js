@@ -1,6 +1,7 @@
 import { MAPPING } from "../mapping";
 
 import { getReports } from "../../api/report";
+import { ReportsPassAuth } from "../../Utils/report_auth";
 
 /**
  * Don't call this directly
@@ -15,7 +16,14 @@ export const DrugReportsProvider = {
    * @returns {Promise<import("react-admin").GetListResult>}
    * */
   getList: async (resource, params) => {
-    const response = await getReports("mak@test");
+    const password = await ReportsPassAuth.getPassword();
+    const response = await getReports(password);
+
+    if (response.error === "INVALID PASSWORD") {
+      ReportsPassAuth.resetPassword();
+      window.location.reload(false);
+      throw Error("Invalid Password");
+    }
 
     return {
       data: response ?? [],
