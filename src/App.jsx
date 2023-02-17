@@ -1,7 +1,8 @@
 import * as React from "react";
 
-import { Admin, defaultTheme, Resource } from "react-admin";
+import { Admin, defaultTheme, Resource, CustomRoutes } from "react-admin";
 import red from "@mui/material/colors/red";
+import { Route } from "react-router-dom";
 
 // TODO: Remove attendo dependencies
 // import Classroom from "./pages/classroom/Index";
@@ -13,6 +14,7 @@ import { authProvider, dataProvider } from "./provider/firebase";
 import { CustomLayout } from "./components/ui/Layout";
 import DrugReport from "./pages/drugReports";
 import Events from "./pages/events";
+import CrimeMapping from "./pages/crimeMapping";
 
 const myTheme = {
   ...defaultTheme,
@@ -47,6 +49,9 @@ const App = () => (
     <Resource {...AuthTeachers} /> */}
     <Resource {...DrugReport} />
     <Resource {...Events} />
+    <CustomRoutes>
+      <Route path="/crime-mapping" element={<CrimeMapping />} />
+    </CustomRoutes>
   </Admin>
 );
 
