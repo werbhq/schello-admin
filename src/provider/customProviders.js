@@ -3,7 +3,7 @@ import { StudentsProvider } from "./custom/students";
 import { SubjectsProvider } from "./custom/subjects";
 import { SemestersProvider } from "./custom/semesters";
 import { AuthTeachersProvider } from "./custom/authorizedTeachers";
-import { DrugReportsProvider } from "./custom/reports_schello";
+import { DrugReportsProvider } from "./custom/drug_reports";
 import { ReportsProvider } from "./custom/reports";
 
 // ADD YOUR PROVIDERS HERE
