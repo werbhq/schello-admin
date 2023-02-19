@@ -1,13 +1,15 @@
 import {
   BooleanField,
   DateField,
-  EmailField,
   TextField,
   List,
   Datagrid,
   SearchInput,
   BooleanInput,
+  UrlField,
+  SelectField,
 } from "react-admin";
+import { news_type } from "./constant";
 
 export const ArticleList = () => {
   const filters = [
@@ -19,9 +21,9 @@ export const ArticleList = () => {
     <List>
       <Datagrid rowClick="show" filters={filters}>
         <TextField source="title" />
-        <TextField source="author" />
-        <EmailField source="email" />
+        <SelectField choices={news_type} source="news_type" />
         <DateField source="timestamp" label="Date" showDate={true} />
+        <UrlField source="redirect_url" emptyText="-" />
         <BooleanField source="visible" />
       </Datagrid>
     </List>
