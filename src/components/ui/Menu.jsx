@@ -4,6 +4,7 @@ import SubMenu from "./SubMenu";
 import LocalPoliceIcon from "@mui/icons-material/LocalPolice";
 import GroupsIcon from "@mui/icons-material/Groups";
 import PublicIcon from "@mui/icons-material/Public";
+import MapIcon from "@mui/icons-material/Map";
 
 export const CustomMenu = () => {
   return (
@@ -20,11 +21,14 @@ export const CustomMenu = () => {
         <Menu.ResourceItem name={MAPPING.COMMUNITY.ARTICLE} />
         <Menu.ResourceItem name={MAPPING.COMMUNITY.VIDEO} />
       </SubMenu>
-      <Menu.Item
-        to="/crime-mapping"
-        primaryText="Crime Mapping"
-        leftIcon={<LocalPoliceIcon />}
-      />
+      <SubMenu name="Crime Mapping" icon={<LocalPoliceIcon />}>
+        <Menu.ResourceItem name={MAPPING.STUDENTS} />
+        <Menu.Item
+          to="/crime-mapping"
+          primaryText="Map"
+          leftIcon={<MapIcon />}
+        />
+      </SubMenu>
     </Menu>
   );
 };

@@ -14,11 +14,12 @@ import { authProvider, dataProvider } from "./provider/firebase";
 import { CustomLayout } from "./components/ui/Layout";
 import DrugReport from "./pages/drugReports";
 import Events from "./pages/general/events";
-import CrimeMapping from "./pages/crimeMapping";
+import CrimeMapping from "./pages/reportMapping";
 import CommunityVideo from "./pages/community/video";
 import CommunityArticle from "./pages/community/article";
 import GeneralNews from "./pages/general/news";
 import GeneralVideo from "./pages/general/video";
+import Students from "./pages/students";
 
 const myTheme = {
   ...defaultTheme,
@@ -57,6 +58,7 @@ const App = () => (
     <Resource {...CommunityVideo} />
     <Resource {...GeneralNews} />
     <Resource {...GeneralVideo} />
+    <Resource {...Students} />
 
     <CustomRoutes>
       <Route path="/crime-mapping" element={<CrimeMapping />} />

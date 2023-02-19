@@ -10,11 +10,13 @@ export const FieldValue = firebase.firestore.FieldValue;
 export const FieldPath = firebase.firestore.FieldPath;
 
 const options = {};
+const emulate = false;
 
 export const dataProviderLegacy = FirebaseDataProvider(config, options);
 export const authProvider = FirebaseAuthProvider(config, options);
 export const db = dataProviderLegacy.app.firestore();
 export const cloudFunctions = getFunctions();
+if (emulate) db.useEmulator("localhost", 8090);
 
 const getCustomConvertor = async (resource, params, method) => {
   const provider = CustomProviders.find((e) => e.resource === resource);

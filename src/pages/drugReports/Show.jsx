@@ -1,25 +1,64 @@
 import {
   TextField,
   DateField,
-  ImageField,
-  ChipField,
   Show,
   SimpleShowLayout,
+  ReferenceField,
+  FunctionField,
 } from "react-admin";
 import AuthenticatedExcise from "../../components/helper/ReportAuthenticated";
+import { MAPPING } from "../../provider/mapping";
+import { status_color } from "./constant";
+import { Chip } from "@mui/material";
+import LocationField from "./components/LocationField";
 
 const DrugShow = () => {
   return (
     <AuthenticatedExcise>
       <Show>
         <SimpleShowLayout>
-          <DateField source="dateIncident" />
-          <DateField source="timeFrom" />
-          <DateField source="timeTo" />
-          <ChipField source="category" />
+          <DateField source="dateIncident" locales={"en-GB"} />
+          <DateField
+            source="timeFrom"
+            showTime
+            showDate={false}
+            options={{ timeStyle: "short" }}
+          />
+          <DateField
+            source="timeTo"
+            showTime
+            showDate={false}
+            options={{ timeStyle: "short" }}
+          />
+          <FunctionField
+            source="status"
+            render={(record, source) => (
+              <Chip
+                label={record[source].replace("_", " ")}
+                color={status_color[record.status]}
+                variant="outlined"
+              />
+            )}
+          />
+          <FunctionField
+            source="category"
+            render={(record, source) => (
+              <Chip
+                label={record[source].replace("-", " ")}
+                variant="outlined"
+              />
+            )}
+          />
           <TextField source="description" />
-          <ImageField source="image" title="Avatar" alt="Avatar" />
-          <TextField source="location.title" />
+          <ReferenceField
+            source="studentId"
+            reference={MAPPING.STUDENTS}
+            link="show"
+            emptyText="-"
+          >
+            <TextField source="name" />
+          </ReferenceField>
+          <LocationField source="location" />
         </SimpleShowLayout>
       </Show>
     </AuthenticatedExcise>
