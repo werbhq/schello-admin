@@ -1,12 +1,12 @@
 import icon from "@mui/icons-material/VideoCall";
-import { MAPPING } from "../../provider/mapping";
+import { MAPPING } from "../../../provider/mapping";
 import VideoEdit from "./Edit";
 import VideoList from "./List";
 import VideoShow from "./Show";
 import VideoCreate from "./Create";
 
 const CommunityVideo = {
-  name: MAPPING.COMMUNITY.VIDEO,
+  name: MAPPING.GENERAL.VIDEO,
   icon,
   options: { label: "Video" },
   list: VideoList,

@@ -12,7 +12,7 @@ const ArticleCreate = () => (
       <TextInput source="title" required />
       <TextInput source="author" required />
       <TextInput source="email" required />
-      <DateInput source="timestamp" required />
+      <DateInput source="timestamp" label="Date" required />
       <BooleanInput source="visible" required />
     </SimpleForm>
   </Create>

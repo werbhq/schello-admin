@@ -9,9 +9,13 @@ export const MAPPING = {
   REPORTS: "reports",
 
   DRUG_REPORTS: "reports",
-  EVENTS: "events",
   COMMUNITY: {
     ARTICLE: "community-article",
     VIDEO: "community-video",
+  },
+  GENERAL: {
+    NEWS: "general-news",
+    VIDEO: "general-video",
+    EVENTS: "events",
   },
 };

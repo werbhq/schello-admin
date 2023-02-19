@@ -21,7 +21,7 @@ export const ArticleList = () => {
         <TextField source="title" />
         <TextField source="author" />
         <EmailField source="email" />
-        <DateField source="timestamp" showDate={true} />
+        <DateField source="timestamp" label="Date" showDate={true} />
         <BooleanField source="visible" />
       </Datagrid>
     </List>

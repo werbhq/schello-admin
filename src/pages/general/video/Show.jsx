@@ -1,11 +1,16 @@
 import {
   BooleanField,
   DateField,
+  ImageField,
   RichTextField,
+  SelectField,
   Show,
   SimpleShowLayout,
   TextField,
+  UrlField,
 } from "react-admin";
+import { PlatForm } from "../../../Utils/platform";
+import { convertSingleValueListToSelectList } from "../../../Utils/helpers";
 
 export const VideoShow = () => {
   return (
@@ -14,9 +19,14 @@ export const VideoShow = () => {
         <TextField source="title" />
         <TextField source="author" />
         <TextField source="email" />
-        <TextField source="platform" />
+        <SelectField
+          source="platform"
+          choices={PlatForm.options.map(convertSingleValueListToSelectList)}
+        />
+        <UrlField source="url" />
+        <ImageField source="thumbnail" />
         <RichTextField source="description" size="large" />
-        <DateField source="timestamp" locales={"en-GB"} />
+        <DateField source="timestamp" label="Date" locales={"en-GB"} />
         <BooleanField source="visible" />
       </SimpleShowLayout>
     </Show>

@@ -7,13 +7,22 @@ import {
   Datagrid,
   SearchInput,
   BooleanInput,
-  RichTextField,
+  SelectField,
+  SelectInput,
+  UrlField,
+  ImageField,
 } from "react-admin";
+import { convertSingleValueListToSelectList } from "../../../Utils/helpers";
+import { PlatForm } from "../../../Utils/platform";
 
 export const VideoList = () => {
   const filters = [
     <SearchInput source="title" alwaysOn resettable />,
     <BooleanInput source="visible" resettable />,
+    <SelectInput
+      source="platform"
+      choices={PlatForm.options.map(convertSingleValueListToSelectList)}
+    />,
   ];
 
   return (
@@ -22,9 +31,13 @@ export const VideoList = () => {
         <TextField source="title" />
         <TextField source="author" />
         <EmailField source="email" />
-        <TextField source="platform" />
-        <RichTextField source="description" size="large"/>
-        <DateField source="timestamp" showDate={true} />
+        <SelectField
+          source="platform"
+          choices={PlatForm.options.map(convertSingleValueListToSelectList)}
+        />
+        <UrlField source="url" />
+        <ImageField source="thumbnail" />
+        <DateField source="timestamp" label="Date" showDate={true} />
         <BooleanField source="visible" />
       </Datagrid>
     </List>

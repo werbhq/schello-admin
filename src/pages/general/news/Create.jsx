@@ -5,20 +5,17 @@ import {
   SimpleForm,
   TextInput,
 } from "react-admin";
-import { RichTextInput } from "ra-input-rich-text";
 
-const VideoCreate = () => (
-  <Create>
+const ArticleCreate = () => (
+  <Create redirect="show">
     <SimpleForm>
       <TextInput source="title" required />
       <TextInput source="author" required />
       <TextInput source="email" required />
-      <TextInput source="platform" required />
-      <RichTextInput source="description" required />
-      <DateInput source="timestamp" required />
+      <DateInput source="timestamp" label="Date" required />
       <BooleanInput source="visible" required />
     </SimpleForm>
   </Create>
 );
 
-export default VideoCreate;
+export default ArticleCreate;

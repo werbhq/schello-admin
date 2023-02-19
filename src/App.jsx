@@ -13,10 +13,12 @@ import DashBoard from "./pages/dashboard/Dashboard";
 import { authProvider, dataProvider } from "./provider/firebase";
 import { CustomLayout } from "./components/ui/Layout";
 import DrugReport from "./pages/drugReports";
-import Events from "./pages/events";
+import Events from "./pages/general/events";
 import CrimeMapping from "./pages/crimeMapping";
-import CommunityVideo from "./pages/communityVideo";
-import CommunityArticle from "./pages/communityArticle";
+import CommunityVideo from "./pages/community/video";
+import CommunityArticle from "./pages/community/article";
+import GeneralNews from "./pages/general/news";
+import GeneralVideo from "./pages/general/video";
 
 const myTheme = {
   ...defaultTheme,
@@ -53,6 +55,8 @@ const App = () => (
     <Resource {...Events} />
     <Resource {...CommunityArticle} />
     <Resource {...CommunityVideo} />
+    <Resource {...GeneralNews} />
+    <Resource {...GeneralVideo} />
 
     <CustomRoutes>
       <Route path="/crime-mapping" element={<CrimeMapping />} />

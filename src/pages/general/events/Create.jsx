@@ -11,7 +11,7 @@ import {
 import { eventModes } from "./Constants";
 
 const EventCreate = () => (
-  <Create>
+  <Create redirect="show">
     <SimpleForm>
       <SelectInput source="mode" choices={eventModes} required />
       <TextInput source="title" required />

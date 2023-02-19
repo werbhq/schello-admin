@@ -13,7 +13,7 @@ export const ArticleShow = () => {
         <TextField source="title" />
         <TextField source="author" />
         <TextField source="email" />
-        <DateField source="timestamp" locales={"en-GB"} />
+        <DateField source="timestamp" label="Date" locales={"en-GB"} />
         <BooleanField source="visible" />
       </SimpleShowLayout>
     </Show>
