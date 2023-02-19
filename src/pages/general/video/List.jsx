@@ -37,7 +37,12 @@ export const VideoList = () => {
         />
         <UrlField source="url" />
         <ImageField source="thumbnail" />
-        <DateField source="timestamp" label="Date" showDate={true} />
+        <DateField
+          source="timestamp"
+          label="Date"
+          showDate={true}
+          locales={"en-GB"}
+        />
         <BooleanField source="visible" />
       </Datagrid>
     </List>

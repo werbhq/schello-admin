@@ -16,7 +16,12 @@ export const ArticleShow = () => {
       <SimpleShowLayout>
         <TextField source="title" />
         <SelectField choices={news_type} source="news_type" />
-        <DateField source="timestamp" label="Date" showDate={true} />
+        <DateField
+          source="timestamp"
+          label="Date"
+          showDate={true}
+          locales={"en-GB"}
+        />
         <UrlField source="redirect_url" emptyText="-" />
         <RichTextField source="description" />
         <BooleanField source="visible" />
