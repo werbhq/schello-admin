@@ -1,6 +1,5 @@
 import {
   BooleanInput,
-  DateField,
   DateInput,
   Edit,
   SimpleForm,

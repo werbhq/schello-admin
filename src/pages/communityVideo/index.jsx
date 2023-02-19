@@ -1,6 +1,5 @@
 import icon from "@mui/icons-material/VideoCall";
 import { MAPPING } from "../../provider/mapping";
-import { ListGuesser, ShowGuesser, EditGuesser } from "ra-ui-materialui";
 import VideoEdit from "./Edit";
 import VideoList from "./List";
 import VideoShow from "./Show";
