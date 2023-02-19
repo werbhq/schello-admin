@@ -15,6 +15,8 @@ import { CustomLayout } from "./components/ui/Layout";
 import DrugReport from "./pages/drugReports";
 import Events from "./pages/events";
 import CrimeMapping from "./pages/crimeMapping";
+import CommunityVideo from "./pages/communityVideo";
+import CommunityArticle from "./pages/communityArticle";
 
 const myTheme = {
   ...defaultTheme,
@@ -49,6 +51,9 @@ const App = () => (
     <Resource {...AuthTeachers} /> */}
     <Resource {...DrugReport} />
     <Resource {...Events} />
+    <Resource {...CommunityArticle} />
+    <Resource {...CommunityVideo} />
+
     <CustomRoutes>
       <Route path="/crime-mapping" element={<CrimeMapping />} />
     </CustomRoutes>

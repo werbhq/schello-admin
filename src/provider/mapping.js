@@ -8,6 +8,10 @@ export const MAPPING = {
   MASTER_CLASSROOMS: "master_classrooms",
   REPORTS: "reports",
 
-  DRUG_REPORTS: "drug_reports",
+  DRUG_REPORTS: "reports",
   EVENTS: "events",
+  COMMUNITY: {
+    ARTICLE: "community-article",
+    VIDEO: "community-video",
+  },
 };
