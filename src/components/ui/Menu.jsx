@@ -4,6 +4,7 @@ import SubMenu from "./SubMenu";
 import LocalPoliceIcon from "@mui/icons-material/LocalPolice";
 import GroupsIcon from "@mui/icons-material/Groups";
 import PublicIcon from "@mui/icons-material/Public";
+import PasswordIcon from "@mui/icons-material/Password";
 import MapIcon from "@mui/icons-material/Map";
 
 export const CustomMenu = () => {
@@ -24,11 +25,16 @@ export const CustomMenu = () => {
       <SubMenu name="Crime Mapping" icon={<LocalPoliceIcon />}>
         <Menu.ResourceItem name={MAPPING.STUDENTS} />
         <Menu.Item
-          to="/crime-mapping"
+          to={MAPPING.CRIME_MAPPING}
           primaryText="Map"
           leftIcon={<MapIcon />}
         />
       </SubMenu>
+      <Menu.Item
+        to={MAPPING.PASSWORD}
+        primaryText="Change Password"
+        leftIcon={<PasswordIcon />}
+      />
     </Menu>
   );
 };

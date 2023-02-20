@@ -10,4 +10,6 @@ export const MAPPING = {
     EVENTS: "events",
   },
   STUDENTS: "students",
+  PASSWORD: "/change-password",
+  CRIME_MAPPING: "/crime-mapping",
 };

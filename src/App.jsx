@@ -15,6 +15,8 @@ import CommunityArticle from "./pages/community/article";
 import GeneralNews from "./pages/general/news";
 import GeneralVideo from "./pages/general/video";
 import Students from "./pages/students";
+import ChangePassword from "./pages/changePassword";
+import { MAPPING } from "./provider/mapping";
 
 const myTheme = {
   ...defaultTheme,
@@ -52,7 +54,8 @@ const App = () => (
     <Resource {...Students} />
 
     <CustomRoutes>
-      <Route path="/crime-mapping" element={<CrimeMapping />} />
+      <Route path={MAPPING.CRIME_MAPPING} element={<CrimeMapping />} />
+      <Route path={MAPPING.PASSWORD} element={<ChangePassword />} />
     </CustomRoutes>
   </Admin>
 );

@@ -32,4 +32,23 @@ export class ReportAPI {
     if (data.error) return data;
     return data;
   };
+
+  static MIGRATE = async (oldPassword, newPassword) => {
+    try {
+      await baseApi.post(`/report/migrate`, {
+        newPassword,
+        password: oldPassword,
+      });
+      await ReportsPassAuth.setPassword(newPassword);
+      return { success: true, message: "Migration is done" };
+    } catch (error) {
+      return {
+        success: false,
+        message:
+          error.response.data === "UNAUTHORIZED"
+            ? "Incorrect old password given"
+            : error.response.statusText,
+      };
+    }
+  };
 }
