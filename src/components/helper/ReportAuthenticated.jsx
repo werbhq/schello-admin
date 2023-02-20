@@ -46,7 +46,10 @@ const AuthenticatedExcise = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!ReportsPassAuth.checkPassword()) setAuthorized(false);
+    if (!ReportsPassAuth.checkPassword()) {
+      setAuthorized(false);
+      setIsLoading(false);
+    }
 
     const checkPassword = async () => {
       return await ReportAPI.AUTH(await ReportsPassAuth.getPassword());
