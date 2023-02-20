@@ -1,12 +1,17 @@
 import CryptoJS from "crypto-js";
 import { authProvider } from "../provider/firebase";
+import { ReportAPI } from "../api/report";
 
 const PASS_KEY = "reports_key";
 
 export class ReportsPassAuth {
-  static checkPassword() {
+  static checkPasswordInLocalStore() {
     const key = localStorage.getItem(PASS_KEY);
     return !!key;
+  }
+
+  static async checkPassword() {
+    return await ReportAPI.AUTH(await this.getPassword());
   }
 
   static resetPassword() {

@@ -2,8 +2,8 @@ import { baseApi } from ".";
 
 export class ReportAPI {
   static AUTH = async (password) => {
-    const { status } = await baseApi.get(`/report/auth?password=${password}`);
-    if (status === 200) return true;
+    const { data } = await baseApi.get(`/report/auth?password=${password}`);
+    if (data === "AUTHORIZED") return true;
     return false;
   };
 

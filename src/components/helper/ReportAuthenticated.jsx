@@ -8,9 +8,11 @@ import {
   DialogContentText,
   DialogTitle,
   Input,
+  Stack,
+  Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import { ReportAPI } from "../../api/report";
+import { useNotify, useRedirect } from "react-admin";
 
 const ReportPassword = () => {
   const [password, setPassword] = useState("");
@@ -23,7 +25,14 @@ const ReportPassword = () => {
   };
 
   return (
-    <Dialog open={open} onClose={handleClose} disableEscapeKeyDown>
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      disableEscapeKeyDown
+      onKeyUp={(e) => {
+        if (e.key === "Enter") handleClose();
+      }}
+    >
       <DialogTitle>Accessing Drug Reports</DialogTitle>
       <DialogContent>
         <DialogContentText>Provide the decryption password</DialogContentText>
@@ -35,38 +44,62 @@ const ReportPassword = () => {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Submit</Button>
+        <form onSubmit={handleClose}>
+          <Button type="submit">Submit</Button>
+        </form>
       </DialogActions>
     </Dialog>
   );
 };
 
+function Loader() {
+  return (
+    <Dialog open={true} disableEscapeKeyDown>
+      <DialogTitle>
+        <Stack
+          direction="row"
+          spacing={2}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <CircularProgress />
+          <Typography variant="h6">Checking decryption key..</Typography>
+        </Stack>
+      </DialogTitle>
+    </Dialog>
+  );
+}
+
 const AuthenticatedExcise = ({ children }) => {
   const [authorized, setAuthorized] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const notify = useNotify();
+  const redirect = useRedirect();
 
   useEffect(() => {
-    if (!ReportsPassAuth.checkPassword()) {
+    if (!ReportsPassAuth.checkPasswordInLocalStore()) {
       setAuthorized(false);
       setIsLoading(false);
+      return;
     }
 
-    const checkPassword = async () => {
-      return await ReportAPI.AUTH(await ReportsPassAuth.getPassword());
-    };
+    setIsLoading(true);
+    ReportsPassAuth.checkPassword()
+      .then((e) => {
+        setAuthorized(e);
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+        setAuthorized(false);
+        notify(`A problem occurred checking access key: ${e.message}`, {
+          type: "error",
+        });
+        redirect("/");
+      });
+  }, [notify, redirect]);
 
-    checkPassword()
-      .then(setAuthorized)
-      .then(() => setIsLoading(false));
-  }, []);
-
-  return isLoading ? (
-    <CircularProgress sx={{ padding: "20px" }} />
-  ) : authorized ? (
-    children
-  ) : (
-    <ReportPassword />
-  );
+  return isLoading ? <Loader /> : authorized ? children : <ReportPassword />;
 };
 
 export default AuthenticatedExcise;
