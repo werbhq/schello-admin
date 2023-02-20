@@ -1,6 +1,7 @@
 import { ReportsPassAuth } from "../../Utils/report_auth";
 import {
   Button,
+  CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
@@ -8,7 +9,8 @@ import {
   DialogTitle,
   Input,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ReportAPI } from "../../api/report";
 
 const ReportPassword = () => {
   const [password, setPassword] = useState("");
@@ -40,7 +42,28 @@ const ReportPassword = () => {
 };
 
 const AuthenticatedExcise = ({ children }) => {
-  return ReportsPassAuth.checkPassword() ? children : <ReportPassword />;
+  const [authorized, setAuthorized] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (!ReportsPassAuth.checkPassword()) setAuthorized(false);
+
+    const checkPassword = async () => {
+      return await ReportAPI.AUTH(await ReportsPassAuth.getPassword());
+    };
+
+    checkPassword()
+      .then(setAuthorized)
+      .then(() => setIsLoading(false));
+  }, []);
+
+  return isLoading ? (
+    <CircularProgress sx={{ padding: "20px" }} />
+  ) : authorized ? (
+    children
+  ) : (
+    <ReportPassword />
+  );
 };
 
 export default AuthenticatedExcise;
