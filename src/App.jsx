@@ -4,11 +4,6 @@ import { Admin, defaultTheme, Resource, CustomRoutes } from "react-admin";
 import red from "@mui/material/colors/red";
 import { Route } from "react-router-dom";
 
-// TODO: Remove attendo dependencies
-// import Classroom from "./pages/classroom/Index";
-// import Subject from "./pages/subjects/Index";
-// import Courses from "./pages/courses/index";
-// import AuthTeachers from "./pages/authTeachers/Index";
 import DashBoard from "./pages/dashboard/Dashboard";
 import { authProvider, dataProvider } from "./provider/firebase";
 import { CustomLayout } from "./components/ui/Layout";
@@ -48,10 +43,6 @@ const App = () => (
     dashboard={DashBoard}
     layout={CustomLayout}
   >
-    {/* <Resource {...Courses} />
-    <Resource {...Subject} />
-    <Resource {...Classroom} />
-    <Resource {...AuthTeachers} /> */}
     <Resource {...DrugReport} />
     <Resource {...Events} />
     <Resource {...CommunityArticle} />

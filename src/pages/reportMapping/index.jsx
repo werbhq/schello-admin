@@ -13,6 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import GoogleMapCustom from "./components/GoogleMapCustom";
+import AuthenticatedExcise from "../../components/auth/AuthenticatedExcise";
 
 // TODO: REMOVE UNWANTED LIBS
 const libraries = [
@@ -182,10 +183,12 @@ function MapContainer() {
 
 const CrimeMapping = () => {
   return (
-    <Card>
-      <CardHeader title="Crime Mapping" />
-      <MapContainer />
-    </Card>
+    <AuthenticatedExcise>
+      <Card>
+        <CardHeader title="Crime Mapping" />
+        <MapContainer />
+      </Card>
+    </AuthenticatedExcise>
   );
 };
 

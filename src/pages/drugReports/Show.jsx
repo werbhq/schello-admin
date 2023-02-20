@@ -6,7 +6,7 @@ import {
   ReferenceField,
   FunctionField,
 } from "react-admin";
-import AuthenticatedExcise from "../../components/helper/ReportAuthenticated";
+import AuthenticatedExcise from "../../components/auth/AuthenticatedExcise";
 import { MAPPING } from "../../provider/mapping";
 import { status_color } from "./constant";
 import { Chip } from "@mui/material";

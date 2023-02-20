@@ -1,18 +1,14 @@
 import icon from "@mui/icons-material/School";
-
 import { MAPPING } from "../../provider/mapping";
-// import AuthorizedTeacherList from "./List";
-// import AuthorizedTeacherShow from "./Show";
-// import AuthorizedTeacherEdit from "./Edit";
-// import AuthorizedTeacherCreate from "./Create";
-import { ListGuesser, ShowGuesser } from "ra-ui-materialui";
+import StudentList from "./List";
+import StudentShow from "./Show";
 
 const Students = {
   name: MAPPING.STUDENTS,
   icon,
   options: { label: "Student" },
-  list: ListGuesser,
-  show: ShowGuesser,
+  list: StudentList,
+  show: StudentShow,
 };
 
 export default Students;

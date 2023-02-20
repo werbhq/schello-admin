@@ -3,23 +3,26 @@ import {
   TextField,
   List,
   SearchInput,
-  TextInput,
-  EmailField,
+  FunctionField,
 } from "react-admin";
+import AuthenticatedExcise from "../../components/auth/AuthenticatedExcise";
 
-const filters = [
-  <SearchInput source="id" alwaysOn resettable />,
-  <TextInput source="branch" resettable />,
-];
+const filters = [<SearchInput source="id" alwaysOn resettable />];
 
-const AuthorizedTeacherList = () => (
-  <List exporter={false} filters={filters}>
-    <Datagrid rowClick="show">
-      <EmailField source="email" />
-      <TextField source="userName" />
-      <TextField source="branch" />
-    </Datagrid>
-  </List>
+const StudentList = () => (
+  <AuthenticatedExcise>
+    <List exporter={false} filters={filters}>
+      <Datagrid rowClick="show">
+        <TextField source="id" />
+        <TextField source="name" />
+        <TextField source="classId" />
+        <FunctionField
+          source="reported"
+          render={(resource, source) => resource[source].length}
+        ></FunctionField>
+      </Datagrid>
+    </List>
+  </AuthenticatedExcise>
 );
 
-export default AuthorizedTeacherList;
+export default StudentList;
