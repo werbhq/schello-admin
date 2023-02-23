@@ -45,7 +45,7 @@ const DrugShow = () => {
             source="category"
             render={(record, source) => (
               <Chip
-                label={record[source].replace("-", " ")}
+                label={record[source].replace("_", " ")}
                 variant="outlined"
               />
             )}

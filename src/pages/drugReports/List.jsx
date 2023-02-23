@@ -42,7 +42,7 @@ export const DrugListDataGrid = (props) => {
       <FunctionField
         source="category"
         render={(record, source) => (
-          <Chip label={record[source].replace("-", " ")} variant="outlined" />
+          <Chip label={record[source].replace("_", " ")} variant="outlined" />
         )}
       />
       <ReferenceField
