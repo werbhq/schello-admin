@@ -66,12 +66,12 @@ const SHAPE = [
   },
 ];
 
-const FACE_DATA = {
-  hairType: HAIR,
-  skinColor: SKIN,
-  eyeColor: EYE,
-  faceShape: SHAPE,
-  gender: GENDER,
-};
+const FACE_DATA = new Map([
+  ["gender", { data: GENDER, label: "Gender" }],
+  ["skinColor", { data: SKIN, label: "Skin Color" }],
+  ["hairType", { data: HAIR, label: "Hair Type" }],
+  ["eyeColor", { data: EYE, label: "Eye Color" }],
+  ["faceShape", { data: SHAPE, label: "Face Type" }],
+]);
 
 export default FACE_DATA;

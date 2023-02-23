@@ -5,14 +5,6 @@ import FACE_DATA from "./FaceData";
 export const FacialDataField = (props) => {
   const { facialData } = useRecordContext();
 
-  const style = {
-    gender: { label: "Gender" },
-    hairType: { label: "Hair Type" },
-    skinColor: { label: "Skin Type" },
-    eyeColor: { label: "Eye Type" },
-    faceShape: { label: "Face Type" },
-  };
-
   return (
     <Stack spacing={1}>
       <FormLabel sx={{ fontSize: "0.75em" }}>Facial Features</FormLabel>
@@ -24,20 +16,21 @@ export const FacialDataField = (props) => {
             alignItems="centre"
             justifyContent="centre"
           >
-            {Object.keys(style).map((e) => {
+            {Array.from(FACE_DATA.keys()).map((e, index) => {
+              const { label, data } = FACE_DATA.get(e);
               return (
-                <Stack spacing={1} alignItems="centre" justifyContent="centre">
-                  <FormLabel sx={{ fontSize: "0.75em" }}>
-                    {style[e].label}
-                  </FormLabel>
+                <Stack
+                  spacing={1}
+                  alignItems="centre"
+                  justifyContent="centre"
+                  key={index}
+                >
+                  <FormLabel sx={{ fontSize: "0.75em" }}>{label}</FormLabel>
                   <Typography sx={{ fontSize: "0.875rem" }}>
                     {facialData[e]}
                   </Typography>
                   <img
-                    src={
-                      FACE_DATA[e].find((_e) => _e.value === facialData[e])
-                        .image
-                    }
+                    src={data.find((_e) => _e.value === facialData[e]).image}
                     alt={e}
                     height={"80px"}
                   />
