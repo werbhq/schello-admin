@@ -1,3 +1,4 @@
+import { RichTextInput } from "ra-input-rich-text";
 import {
   BooleanInput,
   Create,
@@ -13,6 +14,7 @@ const ArticleCreate = () => (
       <TextInput source="author" required />
       <TextInput source="email" required />
       <DateInput source="timestamp" label="Date" required />
+      <RichTextInput source="description" />
       <BooleanInput source="visible" required />
     </SimpleForm>
   </Create>

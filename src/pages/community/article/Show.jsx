@@ -1,6 +1,7 @@
 import {
   BooleanField,
   DateField,
+  RichTextField,
   Show,
   SimpleShowLayout,
   TextField,
@@ -14,6 +15,7 @@ export const ArticleShow = () => {
         <TextField source="author" />
         <TextField source="email" />
         <DateField source="timestamp" label="Date" locales={"en-GB"} />
+        <RichTextField source="description" />
         <BooleanField source="visible" />
       </SimpleShowLayout>
     </Show>
