@@ -1,7 +1,7 @@
 import { MAPPING } from "../mapping";
 
 import { ReportAPI } from "../../api/report";
-import { ReportsPassAuth } from "../../Utils/report_auth";
+import { ReportsPassAuth } from "../../utils/report_auth";
 
 const handlePass = (res) => {
   if (res.error === "INVALID PASSWORD") {

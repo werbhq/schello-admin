@@ -17,6 +17,7 @@ import GeneralVideo from "./pages/general/video";
 import Students from "./pages/students";
 import ChangePassword from "./pages/changePassword";
 import { MAPPING } from "./provider/mapping";
+import { customQueryClient } from "./provider/queryClient";
 
 const myTheme = {
   ...defaultTheme,
@@ -42,6 +43,7 @@ const App = () => (
     theme={myTheme}
     dataProvider={dataProvider}
     authProvider={authProvider}
+    queryClient={customQueryClient}
     dashboard={DashBoard}
     layout={CustomLayout}
   >

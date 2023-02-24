@@ -7,8 +7,8 @@ import {
   TextInput,
 } from "react-admin";
 import { RichTextInput } from "ra-input-rich-text";
-import { convertSingleValueListToSelectList } from "../../../Utils/helpers";
-import { PlatForm } from "../../../Utils/platform";
+import { convertSingleValueListToSelectList } from "../../../utils/helpers";
+import { PlatForm } from "../../../utils/platform";
 
 const VideoCreate = () => (
   <Create

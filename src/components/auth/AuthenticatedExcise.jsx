@@ -1,4 +1,4 @@
-import { ReportsPassAuth } from "../../Utils/report_auth";
+import { ReportsPassAuth } from "../../utils/report_auth";
 import {
   Button,
   CircularProgress,

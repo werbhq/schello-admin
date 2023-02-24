@@ -1,5 +1,5 @@
 import { baseApi } from ".";
-import { ReportsPassAuth } from "../Utils/report_auth";
+import { ReportsPassAuth } from "../utils/report_auth";
 
 export class ReportAPI {
   static AUTH = async () => {

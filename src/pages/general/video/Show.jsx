@@ -9,8 +9,8 @@ import {
   TextField,
   UrlField,
 } from "react-admin";
-import { PlatForm } from "../../../Utils/platform";
-import { convertSingleValueListToSelectList } from "../../../Utils/helpers";
+import { PlatForm } from "../../../utils/platform";
+import { convertSingleValueListToSelectList } from "../../../utils/helpers";
 
 export const VideoShow = () => {
   return (
