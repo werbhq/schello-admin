@@ -1,19 +1,26 @@
 import { convertSingleValueListToSelectList } from "../../utils/helpers";
 
-export const category_type = [
+export const CATEGORY_TYPE = [
   "USAGE_SUSPECTED",
   "USAGE_CONFIRMED",
   "TRADING_SUSPECTED",
   "TRADING_CONFIRMED",
 ].map((e) => ({ id: e, name: e.replace("_", " ") }));
 
-export const status_type = ["NEW", "IN-PROGRESS", "DONE", "SPAM"].map(
+export const REPORT_STATUS = {
+  DONE: "DONE",
+  INPROGRESS: "IN-PROGRESS",
+  NEW: "NEW",
+  SPAM: "SPAM",
+};
+
+export const STATUS_TYPE = ["NEW", "IN-PROGRESS", "DONE", "SPAM"].map(
   convertSingleValueListToSelectList
 );
 
-export const status_color = {
+export const STATUS_COLOR = {
   NEW: "info",
   "IN-PROGRESS": "warning",
   DONE: "success",
-  SPAM: "red",
+  SPAM: "error",
 };

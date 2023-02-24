@@ -8,7 +8,7 @@ import {
 } from "react-admin";
 import AuthenticatedExcise from "../../components/auth/AuthenticatedExcise";
 import { MAPPING } from "../../provider/mapping";
-import { status_color } from "./constant";
+import { STATUS_COLOR } from "./constant";
 import { Chip } from "@mui/material";
 import LocationField from "./components/LocationField";
 import { FacialDataField } from "./components/FaceFields";
@@ -36,7 +36,7 @@ const DrugShow = () => {
             render={(record, source) => (
               <Chip
                 label={record[source].replace("_", " ")}
-                color={status_color[record.status]}
+                color={STATUS_COLOR[record.status]}
                 variant="outlined"
               />
             )}

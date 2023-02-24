@@ -9,7 +9,7 @@ export class ReportAPI {
     return false;
   };
 
-  static GET_ALL = async () => {
+  static getList = async () => {
     const passwordHeader = await ReportsPassAuth.getHeaders();
     const { data } = await baseApi.get(`/report/all`, passwordHeader);
     if (data.error) return data;
@@ -19,16 +19,38 @@ export class ReportAPI {
     }));
   };
 
-  static GET_ID = async (id) => {
+  static getOne = async (id) => {
     const passwordHeader = await ReportsPassAuth.getHeaders();
     const { data } = await baseApi.get(`/report/${id}`, passwordHeader);
     if (data.error) return data;
     return data;
   };
 
-  static GET_IDS = async (ids) => {
+  static getMany = async (ids) => {
     const passwordHeader = await ReportsPassAuth.getHeaders();
     const { data } = await baseApi.post(`/report/ids`, { ids }, passwordHeader);
+    if (data.error) return data;
+    return data;
+  };
+
+  static update = async (id, status) => {
+    const passwordHeader = await ReportsPassAuth.getHeaders();
+    const { data } = await baseApi.patch(
+      `/report`,
+      { ids: [id], status },
+      passwordHeader
+    );
+    if (data.error) return data;
+    return data;
+  };
+
+  static updateMany = async (ids, status) => {
+    const passwordHeader = await ReportsPassAuth.getHeaders();
+    const { data } = await baseApi.patch(
+      `/report`,
+      { ids, status },
+      passwordHeader
+    );
     if (data.error) return data;
     return data;
   };
