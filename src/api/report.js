@@ -3,15 +3,15 @@ import { ReportsPassAuth } from "../utils/report_auth";
 
 export class ReportAPI {
   static AUTH = async () => {
-    const password = await ReportsPassAuth.getPassword();
-    const { data } = await baseApi.get(`/report/auth?password=${password}`);
+    const passwordHeader = await ReportsPassAuth.getHeaders();
+    const { data } = await baseApi.get(`/report`, passwordHeader);
     if (data === "AUTHORIZED") return true;
     return false;
   };
 
   static GET_ALL = async () => {
-    const password = await ReportsPassAuth.getPassword();
-    const { data } = await baseApi.get(`/report/all?password=${password}`);
+    const passwordHeader = await ReportsPassAuth.getHeaders();
+    const { data } = await baseApi.get(`/report/all`, passwordHeader);
     if (data.error) return data;
     return data.map((e) => ({
       ...e,
@@ -20,15 +20,15 @@ export class ReportAPI {
   };
 
   static GET_ID = async (id) => {
-    const password = await ReportsPassAuth.getPassword();
-    const { data } = await baseApi.get(`/report/${id}?password=${password}`);
+    const passwordHeader = await ReportsPassAuth.getHeaders();
+    const { data } = await baseApi.get(`/report/${id}`, passwordHeader);
     if (data.error) return data;
     return data;
   };
 
   static GET_IDS = async (ids) => {
-    const password = await ReportsPassAuth.getPassword();
-    const { data } = await baseApi.post(`/report/ids`, { ids, password });
+    const passwordHeader = await ReportsPassAuth.getHeaders();
+    const { data } = await baseApi.post(`/report/ids`, { ids }, passwordHeader);
     if (data.error) return data;
     return data;
   };

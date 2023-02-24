@@ -8,6 +8,8 @@ const handlePass = (res) => {
     ReportsPassAuth.resetPassword();
     window.location.reload(false);
     throw Error("Invalid Password");
+  } else if (res.error) {
+    throw Error(res.error);
   }
 };
 

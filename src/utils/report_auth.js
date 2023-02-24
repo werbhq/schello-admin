@@ -28,6 +28,22 @@ export class ReportsPassAuth {
     );
   }
 
+  static async getHeaders() {
+    const permissions = await authProvider.getPermissions();
+    const key = localStorage.getItem(PASS_KEY);
+    if (!key) return null;
+
+    const password = CryptoJS.AES.decrypt(key, permissions.user_id).toString(
+      CryptoJS.enc.Utf8
+    );
+
+    return {
+      headers: {
+        authorization: password,
+      },
+    };
+  }
+
   static async setPassword(password) {
     const permissions = await authProvider.getPermissions();
     const data = CryptoJS.AES.encrypt(password, permissions.user_id);
