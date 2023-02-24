@@ -1,4 +1,7 @@
 # Schello Admin
+Admin Panel for schello
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1b1e1397-5624-4245-bd7c-e6f39e207f26/deploy-status)](https://app.netlify.com/sites/schello-admin/deploys)
 
 ## Available Scripts
 
