@@ -43,7 +43,7 @@ export const DrugReportsProvider: DataProviderCustom = {
   },
 
   getMany: async (resource, params) => {
-    const response = await ReportAPI.getMany(params.ids);
+    const response = await ReportAPI.getMany(params.ids as string[]);
     handlePass(response);
 
     return {
@@ -63,7 +63,7 @@ export const DrugReportsProvider: DataProviderCustom = {
   },
 
   updateMany: async (resource, params) => {
-    await ReportAPI.updateMany(params.ids, params.data.status);
+    await ReportAPI.updateMany(params.ids as string[], params.data.status);
 
     return {
       data: params.ids,
