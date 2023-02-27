@@ -12,4 +12,5 @@ export const MAPPING = {
   STUDENTS: "students",
   PASSWORD: "/change-password",
   CRIME_MAPPING: "/crime-mapping",
+  WANTED_LIST: "wanted-list",
 };
