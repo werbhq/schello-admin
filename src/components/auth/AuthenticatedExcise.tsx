@@ -1,6 +1,5 @@
 import { ReportsPassAuth } from "../../utils/report_auth";
 import {
-  Button,
   CircularProgress,
   Dialog,
   DialogActions,
@@ -11,22 +10,29 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { ReactNode, useEffect, useState } from "react";
-import { useNotify, useRedirect } from "react-admin";
+import { ReactNode, useState } from "react";
+import { useDecryptionAuth } from "../../hooks/useDecryptionAuth";
+import { LoadingButton } from "@mui/lab";
 
-const ReportPassword = () => {
+const PasswordDialog = ({
+  refetch,
+  authorized,
+  loading,
+}: {
+  refetch: () => {};
+  authorized: boolean;
+  loading: boolean;
+}) => {
   const [password, setPassword] = useState("");
-  const [open, setOpen] = useState(true);
 
   const handleClose = () => {
     ReportsPassAuth.setPassword(password);
-    setOpen(false);
-    window.location.reload();
+    refetch();
   };
 
   return (
     <Dialog
-      open={open}
+      open={!authorized}
       onClose={handleClose}
       disableEscapeKeyDown
       onKeyUp={(e) => {
@@ -45,7 +51,9 @@ const ReportPassword = () => {
       </DialogContent>
       <DialogActions>
         <form onSubmit={handleClose}>
-          <Button type="submit">Submit</Button>
+          <LoadingButton type="submit" loading={loading}>
+            Submit
+          </LoadingButton>
         </form>
       </DialogActions>
     </Dialog>
@@ -71,36 +79,21 @@ function Loader() {
 }
 
 const AuthenticatedExcise = ({ children }: { children: ReactNode }) => {
-  const [authorized, setAuthorized] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const notify = useNotify();
-  const redirect = useRedirect();
+  const { authorized, isLoading, refetch, isRefetching } = useDecryptionAuth();
 
-  useEffect(() => {
-    if (!ReportsPassAuth.checkPasswordInLocalStore()) {
-      setAuthorized(false);
-      setIsLoading(false);
-      return;
-    }
-
-    setIsLoading(true);
-    ReportsPassAuth.checkPassword()
-      .then((e) => {
-        setAuthorized(e);
-        setIsLoading(false);
-      })
-      .catch((e) => {
-        setIsLoading(false);
-        setAuthorized(false);
-        notify(`A problem occurred checking access key: ${e.message}`, {
-          type: "error",
-        });
-        redirect("/");
-      });
-  }, [notify, redirect]);
+  if (isLoading) return <Loader />;
 
   return (
-    <>{isLoading ? <Loader /> : authorized ? children : <ReportPassword />}</>
+    <>
+      {authorized && children}
+      {!isLoading && (
+        <PasswordDialog
+          refetch={refetch}
+          authorized={authorized ?? false}
+          loading={isRefetching}
+        />
+      )}
+    </>
   );
 };
 
