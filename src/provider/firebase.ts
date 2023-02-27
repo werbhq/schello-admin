@@ -7,15 +7,16 @@ import config from "./config.json";
 import CustomProviders from "./customProviders";
 import { getFunctions } from "firebase/functions";
 import { DataProvider } from "react-admin";
+import { useFirebaseEmulator } from "../config";
 
 const options: RAFirebaseOptions = {};
-const emulate = false;
 
 export const dataProviderLegacy = FirebaseDataProvider(config, options);
 export const authProvider = FirebaseAuthProvider(config, options);
 export const db = dataProviderLegacy.app.firestore();
 export const cloudFunctions = getFunctions();
-if (emulate) db.useEmulator("localhost", 8090);
+
+if (useFirebaseEmulator) db.useEmulator("localhost", 8090);
 
 const getCustomConvertor = async (
   resource: string,
