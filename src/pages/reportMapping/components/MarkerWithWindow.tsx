@@ -1,5 +1,7 @@
 import { Card, Chip, Stack, Typography } from "@mui/material";
 import { InfoWindowF, MarkerF } from "@react-google-maps/api";
+// Use all components ending with F (its a fix for react 18+)
+// Docs: https://react-google-maps-api-docs.netlify.app/
 import { useState } from "react";
 import { Report } from "../../../types/Report";
 

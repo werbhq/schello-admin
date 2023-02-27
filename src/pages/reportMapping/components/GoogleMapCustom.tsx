@@ -1,7 +1,9 @@
 /*global google*/
 import { GoogleMap } from "@react-google-maps/api";
+// Use all components ending with F (its a fix for react 18+)
+// Docs: https://react-google-maps-api-docs.netlify.app/
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MarkerWithWindow from "./MarkerWithWindow";
 import { Report } from "../../../types/Report";
 
@@ -44,10 +46,11 @@ const GoogleMapCustom = (props: {
     globalState.HEAT_MAPS.push(heatMap);
   };
 
-  if (map) {
+  useEffect(() => {
     setBoundsToData();
     addHeatMap(props.hideHeatMap);
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [map]);
 
   return (
     <GoogleMap mapContainerStyle={mapStyles} onLoad={(map) => setMap(map)}>
