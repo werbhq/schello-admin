@@ -22,6 +22,7 @@ import Students from "./pages/students";
 import ChangePassword from "./pages/changePassword";
 import { MAPPING } from "./provider/mapping";
 import { customQueryClient } from "./provider/queryClient";
+import WantedList from "./pages/wantedList";
 
 const myTheme: RaThemeOptions = {
   ...defaultTheme,
@@ -58,6 +59,7 @@ const App = () => (
     <Resource {...GeneralNews} />
     <Resource {...GeneralVideo} />
     <Resource {...Students} />
+    <Resource {...WantedList} />
 
     <CustomRoutes>
       <Route path={MAPPING.CRIME_MAPPING} element={<CrimeMapping />} />

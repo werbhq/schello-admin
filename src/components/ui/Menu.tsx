@@ -29,6 +29,7 @@ export const CustomMenu = () => {
           primaryText="Map"
           leftIcon={<MapIcon />}
         />
+        <Menu.ResourceItem name={MAPPING.WANTED_LIST} />
       </SubMenu>
       <Menu.Item
         to={MAPPING.PASSWORD}
