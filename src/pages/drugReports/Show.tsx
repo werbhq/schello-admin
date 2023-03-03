@@ -5,6 +5,7 @@ import {
   SimpleShowLayout,
   ReferenceField,
   FunctionField,
+  ImageField,
 } from "react-admin";
 import AuthenticatedExcise from "../../components/auth/AuthenticatedExcise";
 import { MAPPING } from "../../provider/mapping";
@@ -68,6 +69,7 @@ const DrugShow = () => {
             emptyText="-"
           >
             <TextField source="name" />
+            <ImageField source="photoUrl" emptyText="-" />
           </ReferenceField>
 
           <FacialDataField />
