@@ -4,8 +4,10 @@ import {
   ImageField,
   TextField,
   NumberField,
+  FunctionField,
 } from "react-admin";
 import FACE_DATA from "../../components/face/FaceData";
+import { WantedList } from "../../types/WantedList";
 
 export const WantedPersonList = () => {
   return (
@@ -14,6 +16,10 @@ export const WantedPersonList = () => {
         <TextField source="name" emptyText="-" />
         <NumberField source="age" emptyText="-" />
         <ImageField source="photoUrl" label="Photo" />
+        <FunctionField
+          source="reported"
+          render={(resource: WantedList) => resource["reports"].length}
+        ></FunctionField>
         {Array.from(FACE_DATA.keys()).map((e, index) => (
           <TextField
             key={index}

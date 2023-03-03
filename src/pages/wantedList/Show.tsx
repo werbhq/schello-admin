@@ -3,12 +3,15 @@ import {
   ImageField,
   ListButton,
   NumberField,
+  ReferenceArrayField,
   Show,
   SimpleShowLayout,
   TextField,
   TopToolbar,
 } from "react-admin";
 import { FacialDataField } from "../../components/face/FaceField";
+import { MAPPING } from "../../provider/mapping";
+import { DrugListDataGrid } from "../drugReports/List";
 
 const WantedPersonShowAction = () => (
   <TopToolbar>
@@ -24,6 +27,9 @@ export const WantedPersonShow = () => (
       <NumberField source="age" emptyText="-" />
       <ImageField source="photoUrl" label="Photo" />
       <FacialDataField />
+      <ReferenceArrayField source="reports" reference={MAPPING.DRUG_REPORTS}>
+        <DrugListDataGrid />
+      </ReferenceArrayField>
     </SimpleShowLayout>
   </Show>
 );

@@ -27,6 +27,7 @@ export const getTestData = () => {
       status: "IN-PROGRESS",
       studentId: null,
       facialData: null,
+      wantedPersonId: null,
     },
     {
       dateIncident: "2023-01-05T23:28:57.517Z",
@@ -43,6 +44,7 @@ export const getTestData = () => {
       studentId: null,
       facialData: null,
       status: "NEW",
+      wantedPersonId: null,
     },
     {
       dateIncident: "2023-01-05T23:28:57.517Z",
@@ -59,6 +61,7 @@ export const getTestData = () => {
       status: "DONE",
       studentId: null,
       facialData: null,
+      wantedPersonId: null,
     },
     {
       dateIncident: "2023-01-05T23:28:57.517Z",
@@ -75,6 +78,7 @@ export const getTestData = () => {
       status: "DONE",
       studentId: null,
       facialData: null,
+      wantedPersonId: null,
     },
   ];
 

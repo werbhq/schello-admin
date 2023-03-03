@@ -80,6 +80,14 @@ export const DrugListDataGrid = () => {
       >
         <TextField source="name" />
       </ReferenceField>
+      <ReferenceField
+        source="wantedPersonId"
+        reference={MAPPING.WANTED_LIST}
+        link="show"
+        emptyText="-"
+      >
+        <TextField source="name" />
+      </ReferenceField>
       <LocationField source="location" />
     </Datagrid>
   );

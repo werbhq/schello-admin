@@ -36,7 +36,8 @@ export const FacialDataField = () => {
                   </Typography>
                   <img
                     src={
-                      face?.data.find((_e) => _e.value === facialData[e])?.image
+                      face?.data.find((_e) => _e.value === facialData[e])
+                        ?.image ?? ""
                     }
                     alt={e}
                     height={"80px"}

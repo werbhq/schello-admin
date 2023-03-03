@@ -26,23 +26,24 @@ import genderMale from "./assets/gender/male.png";
 import genderFemale from "./assets/gender/female.png";
 import { FacialData } from "../../types/Report";
 
-interface FeatureData {
-  image: string;
+export interface FeatureData {
+  image: string | null;
   label: string;
   value: string;
 }
 
 const GENDER: {
-  image: string;
+  image: string | null;
   label: string;
   value: FacialData["gender"];
 }[] = [
   { image: genderMale, label: "Male", value: "MALE" },
   { image: genderFemale, label: "Female", value: "FEMALE" },
+  { image: null, label: "None", value: "NONE" },
 ];
 
 const HAIR: {
-  image: string;
+  image: string | null;
   label: string;
   value: FacialData["hairType"];
 }[] = [
@@ -50,10 +51,11 @@ const HAIR: {
   { image: hairWavy, label: "Wavy", value: "WAVY" },
   { image: hairCurly, label: "Curly", value: "CURLY" },
   { image: hairKinky, label: "Kinky", value: "KINKY" },
+  { image: null, label: "None", value: "NONE" },
 ];
 
 const SKIN: {
-  image: string;
+  image: string | null;
   label: string;
   value: FacialData["skinColor"];
 }[] = [
@@ -62,10 +64,11 @@ const SKIN: {
   { image: skinLightBrown, label: "Light Brown", value: "LIGHT-BROWN" },
   { image: skinBrown, label: "Brown", value: "BROWN" },
   { image: skinDarkBrown, label: "Dark Brown", value: "DARK-BROWN" },
+  { image: null, label: "None", value: "NONE" },
 ];
 
 const EYE: {
-  image: string;
+  image: string | null;
   label: string;
   value: FacialData["eyeColor"];
 }[] = [
@@ -74,10 +77,11 @@ const EYE: {
   { image: eyeGreen, label: "Green", value: "GREEN" },
   { image: eyeSilver, label: "Silver", value: "SILVER" },
   { image: eyeBrown, label: "Brown", value: "BROWN" },
+  { image: null, label: "None", value: "NONE" },
 ];
 
 const SHAPE: {
-  image: string;
+  image: string | null;
   label: string;
   value: FacialData["faceShape"];
 }[] = [
@@ -91,6 +95,7 @@ const SHAPE: {
     label: "Inverted Triangle",
     value: "INVERTED_TRIANGLE",
   },
+  { image: null, label: "None", value: "NONE" },
 ];
 
 const FACE_DATA = new Map<
