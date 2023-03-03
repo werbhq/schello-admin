@@ -8,7 +8,6 @@ import {
   SimpleShowLayout,
   TextField,
   TopToolbar,
-  
 } from "react-admin";
 import { FacialDataField } from "../../components/face/FaceField";
 
@@ -21,7 +20,7 @@ const WantedPersonShowAction = () => (
 );
 
 export const WantedPersonShow = () => (
-  <Show title="Wanted Person Details">
+  <Show title="Wanted Person Details" actions={<WantedPersonShowAction />}>
     <SimpleShowLayout>
       <TextField source="name" emptyText="-" />
       <NumberField source="age" emptyText="-" />
