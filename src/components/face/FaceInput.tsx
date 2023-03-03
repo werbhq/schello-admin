@@ -5,9 +5,10 @@ export const FacialDataInput = ({ source, ...rest }: { source?: string }) => {
   const sourceString = source ?? "facialData";
   return (
     <WrapperField {...rest}>
-      {Array.from(FACE_DATA.keys()).map((e) => {
+      {Array.from(FACE_DATA.keys()).map((e, index) => {
         return (
           <SelectInput
+            key={index}
             source={`${sourceString}.${e}`}
             label={FACE_DATA.get(e)?.label ?? ""}
             choices={Array.from(FACE_DATA.get(e)?.data ?? []).map((e) => ({

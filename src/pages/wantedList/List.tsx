@@ -14,8 +14,9 @@ export const WantedPersonList = () => {
         <TextField source="name" emptyText="-" />
         <NumberField source="age" emptyText="-" />
         <ImageField source="photoUrl" label="Photo" />
-        {Array.from(FACE_DATA.keys()).map((e) => (
+        {Array.from(FACE_DATA.keys()).map((e, index) => (
           <TextField
+            key={index}
             source={`facialData.${e}`}
             label={FACE_DATA.get(e)?.label ?? ""}
           />
