@@ -1,21 +1,20 @@
 import {
   Edit,
-  TopToolbar,
-  ShowButton,
-  ListButton,
   ImageField,
   ImageInput,
   NumberInput,
+  SaveButton,
   SimpleForm,
   TextInput,
+  Toolbar,
   useRecordContext,
 } from "react-admin";
 import { FacialDataInput } from "../../components/face/FaceInput";
-const WantedPersonEditActions = () => (
-  <TopToolbar>
-    <ShowButton />
-    <ListButton />
-  </TopToolbar>
+
+const EditToolbar = (props: any) => (
+  <Toolbar {...props}>
+    <SaveButton />
+  </Toolbar>
 );
 
 const SimpleFormWrapper = (props: any) => {
@@ -30,7 +29,7 @@ const SimpleFormWrapper = (props: any) => {
   };
 
   return (
-    <SimpleForm {...props} record={newRecord}>
+    <SimpleForm {...props} record={newRecord} toolbar={<EditToolbar />}>
       <TextInput disabled source="id" />
       <TextInput source="name" />
       <NumberInput source="age" />

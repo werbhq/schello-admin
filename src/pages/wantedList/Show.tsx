@@ -1,5 +1,4 @@
 import {
-  DeleteButton,
   EditButton,
   ImageField,
   ListButton,
@@ -13,7 +12,6 @@ import { FacialDataField } from "../../components/face/FaceField";
 
 const WantedPersonShowAction = () => (
   <TopToolbar>
-    <DeleteButton />
     <EditButton />
     <ListButton />
   </TopToolbar>
