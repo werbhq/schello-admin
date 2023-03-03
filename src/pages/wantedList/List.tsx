@@ -18,7 +18,7 @@ export const WantedPersonList = () => {
         <ImageField source="photoUrl" label="Photo" />
         <FunctionField
           source="reported"
-          render={(resource: WantedList) => resource["reports"].length}
+          render={(resource: WantedList) => resource["reported"].length}
         ></FunctionField>
         {Array.from(FACE_DATA.keys()).map((e, index) => (
           <TextField

@@ -27,7 +27,7 @@ export const WantedPersonShow = () => (
       <NumberField source="age" emptyText="-" />
       <ImageField source="photoUrl" label="Photo" />
       <FacialDataField />
-      <ReferenceArrayField source="reports" reference={MAPPING.DRUG_REPORTS}>
+      <ReferenceArrayField source="reported" reference={MAPPING.DRUG_REPORTS}>
         <DrugListDataGrid />
       </ReferenceArrayField>
     </SimpleShowLayout>
