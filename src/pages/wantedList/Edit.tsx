@@ -30,7 +30,6 @@ const SimpleFormWrapper = (props: any) => {
 
   return (
     <SimpleForm {...props} record={newRecord} toolbar={<EditToolbar />}>
-      <TextInput disabled source="id" />
       <TextInput source="name" />
       <NumberInput source="age" />
       <ImageInput source="photoUrl" maxSize={10e6} label="Photo" isRequired>
