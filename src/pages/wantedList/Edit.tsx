@@ -1,7 +1,22 @@
-import { Edit, SimpleForm, TextInput, SelectInput } from "react-admin";
+import {
+  Edit,
+  SimpleForm,
+  TextInput,
+  SelectInput,
+  TopToolbar,
+  ShowButton,
+  ListButton,
+} from "react-admin";
+
+const WantedPersonEditActions = () => (
+  <TopToolbar>
+    <ShowButton />
+    <ListButton />
+  </TopToolbar>
+);
 
 export const WantedPersonEdit = () => (
-  <Edit>
+  <Edit redirect="show" actions={<WantedPersonEditActions />}>
     <SimpleForm>
       <TextInput disabled source="id" />
       <TextInput source="photoUrl" />

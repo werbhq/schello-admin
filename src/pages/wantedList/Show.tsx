@@ -1,6 +1,8 @@
 import {
+  DeleteButton,
   EditButton,
   ImageField,
+  ListButton,
   Show,
   SimpleShowLayout,
   TopToolbar,
@@ -9,7 +11,9 @@ import { FacialDataField } from "../drugReports/components/FaceFields";
 
 const WantedPersonShowAction = () => (
   <TopToolbar>
+    <DeleteButton />
     <EditButton />
+    <ListButton />
   </TopToolbar>
 );
 
