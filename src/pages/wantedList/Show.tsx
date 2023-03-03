@@ -12,6 +12,7 @@ import {
 import { FacialDataField } from "../../components/face/FaceField";
 import { MAPPING } from "../../provider/mapping";
 import { DrugListDataGrid } from "../drugReports/List";
+import AuthenticatedExcise from "../../components/auth/AuthenticatedExcise";
 
 const WantedPersonShowAction = () => (
   <TopToolbar>
@@ -21,15 +22,17 @@ const WantedPersonShowAction = () => (
 );
 
 export const WantedPersonShow = () => (
-  <Show title="Wanted Person Details" actions={<WantedPersonShowAction />}>
-    <SimpleShowLayout>
-      <TextField source="name" emptyText="-" />
-      <NumberField source="age" emptyText="-" />
-      <ImageField source="photoUrl" label="Photo" />
-      <FacialDataField />
-      <ReferenceArrayField source="reported" reference={MAPPING.DRUG_REPORTS}>
-        <DrugListDataGrid />
-      </ReferenceArrayField>
-    </SimpleShowLayout>
-  </Show>
+  <AuthenticatedExcise>
+    <Show title="Wanted Person Details" actions={<WantedPersonShowAction />}>
+      <SimpleShowLayout>
+        <TextField source="name" emptyText="-" />
+        <NumberField source="age" emptyText="-" />
+        <ImageField source="photoUrl" label="Photo" />
+        <FacialDataField />
+        <ReferenceArrayField source="reported" reference={MAPPING.DRUG_REPORTS}>
+          <DrugListDataGrid />
+        </ReferenceArrayField>
+      </SimpleShowLayout>
+    </Show>
+  </AuthenticatedExcise>
 );

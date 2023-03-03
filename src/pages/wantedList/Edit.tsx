@@ -10,6 +10,7 @@ import {
   useRecordContext,
 } from "react-admin";
 import { FacialDataInput } from "../../components/face/FaceInput";
+import AuthenticatedExcise from "../../components/auth/AuthenticatedExcise";
 
 const EditToolbar = (props: any) => (
   <Toolbar {...props}>
@@ -42,8 +43,10 @@ const SimpleFormWrapper = (props: any) => {
 
 export const WantedPersonEdit = () => {
   return (
-    <Edit mutationMode="pessimistic">
-      <SimpleFormWrapper />
-    </Edit>
+    <AuthenticatedExcise>
+      <Edit mutationMode="pessimistic">
+        <SimpleFormWrapper />
+      </Edit>
+    </AuthenticatedExcise>
   );
 };
