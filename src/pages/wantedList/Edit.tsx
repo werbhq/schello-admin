@@ -1,24 +1,12 @@
-import { Edit, SimpleForm, TextInput, SelectInput } from "react-admin";
+import { Edit, SimpleForm, TextInput } from "react-admin";
+import { FacialDataInput } from "../../components/face/FaceInput";
 
 export const WantedPersonEdit = () => (
   <Edit>
     <SimpleForm>
       <TextInput disabled source="id" />
       <TextInput source="photoUrl" />
-      <TextInput source="facialData.eyeColor" />
-      <TextInput source="facialData.faceShape" />
-      <TextInput source="facialData.gender" />
-      <TextInput source="facialData.faceShape" />
-      <TextInput source="facialData.hairType" />
-      <SelectInput
-        source="facialData.hairType"
-        choices={[
-          { id: "straight", name: "STRAIGHT" },
-          { id: "wavy", name: "WAVY" },
-          { id: "curly", name: "CURLY" },
-          { id: "kinky", name: "KINKY" },
-        ]}
-      />
+      <FacialDataInput source="facialData" />
       {/* <ImageInput source="pictures" label="Related pictures">
         <ImageField source="src" title="title" />
       </ImageInput> */}
