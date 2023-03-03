@@ -3,11 +3,14 @@ import {
   EditButton,
   ImageField,
   ListButton,
+  NumberField,
   Show,
   SimpleShowLayout,
+  TextField,
   TopToolbar,
+  
 } from "react-admin";
-import { FacialDataField } from "../drugReports/components/FaceFields";
+import { FacialDataField } from "../../components/face/FaceField";
 
 const WantedPersonShowAction = () => (
   <TopToolbar>
@@ -18,9 +21,11 @@ const WantedPersonShowAction = () => (
 );
 
 export const WantedPersonShow = () => (
-  <Show title="Wanted Person Details" actions={<WantedPersonShowAction />}>
+  <Show title="Wanted Person Details">
     <SimpleShowLayout>
-      <ImageField source="photoUrl" label="CriminalPhoto" />
+      <TextField source="name" emptyText="-" />
+      <NumberField source="age" emptyText="-" />
+      <ImageField source="photoUrl" label="Photo" />
       <FacialDataField />
     </SimpleShowLayout>
   </Show>

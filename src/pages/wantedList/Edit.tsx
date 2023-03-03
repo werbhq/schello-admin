@@ -1,13 +1,16 @@
 import {
   Edit,
-  SimpleForm,
-  TextInput,
-  SelectInput,
   TopToolbar,
   ShowButton,
   ListButton,
+  ImageField,
+  ImageInput,
+  NumberInput,
+  SimpleForm,
+  TextInput,
+  useRecordContext,
 } from "react-admin";
-
+import { FacialDataInput } from "../../components/face/FaceInput";
 const WantedPersonEditActions = () => (
   <TopToolbar>
     <ShowButton />
@@ -15,28 +18,34 @@ const WantedPersonEditActions = () => (
   </TopToolbar>
 );
 
-export const WantedPersonEdit = () => (
-  <Edit redirect="show" actions={<WantedPersonEditActions />}>
-    <SimpleForm>
+const SimpleFormWrapper = (props: any) => {
+  const record = useRecordContext();
+
+  const newRecord = {
+    ...record,
+    photoUrl: {
+      title: record.photoId,
+      src: record.photoUrl,
+    },
+  };
+
+  return (
+    <SimpleForm {...props} record={newRecord}>
       <TextInput disabled source="id" />
-      <TextInput source="photoUrl" />
-      <TextInput source="facialData.eyeColor" />
-      <TextInput source="facialData.faceShape" />
-      <TextInput source="facialData.gender" />
-      <TextInput source="facialData.faceShape" />
-      <TextInput source="facialData.hairType" />
-      <SelectInput
-        source="facialData.hairType"
-        choices={[
-          { id: "straight", name: "STRAIGHT" },
-          { id: "wavy", name: "WAVY" },
-          { id: "curly", name: "CURLY" },
-          { id: "kinky", name: "KINKY" },
-        ]}
-      />
-      {/* <ImageInput source="pictures" label="Related pictures">
-        <ImageField source="src" title="title" />
-      </ImageInput> */}
+      <TextInput source="name" />
+      <NumberInput source="age" />
+      <ImageInput source="photoUrl" maxSize={10e6} label="Photo" isRequired>
+        <ImageField source="src" />
+      </ImageInput>
+      <FacialDataInput source="facialData" />
     </SimpleForm>
-  </Edit>
-);
+  );
+};
+
+export const WantedPersonEdit = () => {
+  return (
+    <Edit mutationMode="pessimistic">
+      <SimpleFormWrapper />
+    </Edit>
+  );
+};

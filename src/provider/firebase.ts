@@ -8,15 +8,18 @@ import CustomProviders from "./customProviders";
 import { getFunctions } from "firebase/functions";
 import { DataProvider } from "react-admin";
 import { useFirebaseEmulator } from "../config";
+import { getStorage } from "firebase/storage";
 
 const options: RAFirebaseOptions = {};
+const isProd = process.env.NODE_ENV === "production";
 
 export const dataProviderLegacy = FirebaseDataProvider(config, options);
 export const authProvider = FirebaseAuthProvider(config, options);
 export const db = dataProviderLegacy.app.firestore();
 export const cloudFunctions = getFunctions();
+export const storage = getStorage();
 
-if (useFirebaseEmulator) db.useEmulator("localhost", 8090);
+if (useFirebaseEmulator && !isProd) db.useEmulator("localhost", 8090);
 
 const getCustomConvertor = async (
   resource: string,
@@ -24,10 +27,16 @@ const getCustomConvertor = async (
   method: keyof DataProvider
 ) => {
   const provider = CustomProviders.find((e) => e.resource === resource);
+
   if (provider) {
     if (provider[method] !== undefined)
       return provider[method](resource, params);
-    else console.error(`${method}() Not Implemented For ${resource}`);
+    else if (!isProd) {
+      console.warn(
+        `${method}() Not Implemented For ${resource}.`,
+        "Ignore if using default provider is fine."
+      );
+    }
   }
   return dataProviderLegacy[method](resource, params);
 };
