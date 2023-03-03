@@ -11,6 +11,7 @@ export const FacialDataInput = ({ source, ...rest }: { source?: string }) => {
             key={index}
             source={`${sourceString}.${e}`}
             label={FACE_DATA.get(e)?.label ?? ""}
+            required
             choices={Array.from(FACE_DATA.get(e)?.data ?? []).map((e) => ({
               id: e.value,
               name: e.label,
