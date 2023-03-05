@@ -6,10 +6,12 @@ import {
   ReferenceField,
   FunctionField,
   BulkUpdateButton,
+  TextInput,
+  SelectInput,
 } from "react-admin";
 import AuthenticatedExcise from "../../components/auth/AuthenticatedExcise";
 import { MAPPING } from "../../provider/mapping";
-import { STATUS_COLOR, REPORT_STATUS } from "./constant";
+import { STATUS_COLOR, REPORT_STATUS, STATUS_TYPE } from "./constant";
 import { Chip } from "@mui/material";
 import LocationField from "./components/LocationField";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
@@ -93,10 +95,15 @@ export const DrugListDataGrid = () => {
   );
 };
 
+const postFilters = [
+  <SelectInput choices={STATUS_TYPE} source="status" />,
+  <TextInput label="Location Id" source="location.id" />,
+];
+
 const DrugList = () => {
   return (
     <AuthenticatedExcise>
-      <List>
+      <List filters={postFilters}>
         <DrugListDataGrid />
       </List>
     </AuthenticatedExcise>

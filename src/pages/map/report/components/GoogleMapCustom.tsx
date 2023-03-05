@@ -5,7 +5,7 @@ import { GoogleMap } from "@react-google-maps/api";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import MarkerWithWindow from "./MarkerWithWindow";
-import { Report } from "../../../../types/Report";
+import { ReportMap } from "../helpers/parseReport";
 
 const mapStyles = {
   height: "80vh",
@@ -18,20 +18,15 @@ const globalState: { HEAT_MAPS: google.maps.visualization.HeatmapLayer[] } = {
 };
 
 const GoogleMapCustom = ({
-  data: reports,
+  data,
   hideMarker,
   hideHeatMap,
 }: {
-  data: Report[];
+  data: ReportMap[];
   hideMarker: boolean;
   hideHeatMap: boolean;
 }) => {
   const [map, setMap] = useState<google.maps.Map | null>(null);
-
-  const data = reports.map(({ location, ...rest }) => ({
-    ...rest,
-    location: new google.maps.LatLng(location.lat, location.lon),
-  }));
 
   const setBoundsToData = () => {
     const bounds = new google.maps.LatLngBounds();
@@ -58,7 +53,7 @@ const GoogleMapCustom = ({
       addHeatMap(hideHeatMap);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [map, hideHeatMap, reports]);
+  }, [map, hideHeatMap, data]);
 
   return (
     <GoogleMap mapContainerStyle={mapStyles} onLoad={(map) => setMap(map)}>

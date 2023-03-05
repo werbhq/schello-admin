@@ -3,6 +3,7 @@ import { MAPPING } from "../mapping";
 import { ReportAPI } from "../../api/report";
 import { ReportsPassAuth } from "../../utils/report_auth";
 import { DataProviderCustom } from "../../types/DataProvider";
+import { sorter } from "../helpers/sorter";
 
 const handlePass = (res: { error: string }) => {
   if (res.error === "INVALID PASSWORD") {
@@ -26,7 +27,7 @@ export const DrugReportsProvider: DataProviderCustom = {
     handlePass(response);
 
     return {
-      data: response ?? [],
+      data: sorter(params, response) ?? [],
       total: response?.length ?? 0,
       status: 200,
     };

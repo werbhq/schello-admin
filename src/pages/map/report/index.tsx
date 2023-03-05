@@ -9,6 +9,7 @@ import PageLoader from "../../../components/ui/PageLoader";
 import { useGetList } from "react-admin";
 import { MAPPING } from "../../../provider/mapping";
 import { SwitchCustom } from "../../../components/ui/SwitchCustom";
+import { parseReports } from "./helpers/parseReport";
 
 const libraries: (
   | "places"
@@ -34,17 +35,13 @@ function MapContainer() {
   const [hideHeatMap, setHideHeatMap] = useState(false);
 
   useEffect(() => {
-    const x = useLiveData ? liveReports ?? [] : getTestData();
-    setData(x);
-
+    const fetchedData = useLiveData ? liveReports ?? [] : getTestData();
+    setData(fetchedData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [useLiveData]);
 
   if (loadError) return <div>Map cannot be loaded right now, sorry.</div>;
-
-  if (!(isMapsLoaded && !isLoading)) {
-    return <PageLoader loading={true} />;
-  }
+  if (!(isMapsLoaded && !isLoading)) return <PageLoader loading={true} />;
 
   return (
     <>
@@ -72,7 +69,7 @@ function MapContainer() {
       </Stack>
 
       <GoogleMapCustom
-        data={data}
+        data={parseReports(data)}
         hideHeatMap={hideHeatMap}
         hideMarker={hideMarkers}
       />
