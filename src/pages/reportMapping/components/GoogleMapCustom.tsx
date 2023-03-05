@@ -17,14 +17,18 @@ const globalState: { HEAT_MAPS: google.maps.visualization.HeatmapLayer[] } = {
   HEAT_MAPS: [],
 };
 
-const GoogleMapCustom = (props: {
+const GoogleMapCustom = ({
+  data: reports,
+  hideMarker,
+  hideHeatMap,
+}: {
   data: Report[];
   hideMarker: boolean;
   hideHeatMap: boolean;
 }) => {
   const [map, setMap] = useState<google.maps.Map | null>(null);
 
-  const data = props.data.map(({ location, ...rest }) => ({
+  const data = reports.map(({ location, ...rest }) => ({
     ...rest,
     location: new google.maps.LatLng(location.lat, location.lon),
   }));
@@ -36,25 +40,29 @@ const GoogleMapCustom = (props: {
   };
 
   const addHeatMap = (hide: boolean) => {
-    if (hide) return globalState.HEAT_MAPS.forEach((e) => e.setMap(null));
+    globalState.HEAT_MAPS.forEach((e) => e.setMap(null));
+    globalState.HEAT_MAPS = [];
 
-    const heatMap = new google.maps.visualization.HeatmapLayer({
-      data: data.map((e) => e.location),
-    });
-    heatMap.setMap(map);
-
-    globalState.HEAT_MAPS.push(heatMap);
+    if (!hide) {
+      const heatMap = new google.maps.visualization.HeatmapLayer({
+        data: data.map((e) => e.location),
+      });
+      heatMap.setMap(map);
+      globalState.HEAT_MAPS.push(heatMap);
+    }
   };
 
   useEffect(() => {
-    setBoundsToData();
-    addHeatMap(props.hideHeatMap);
+    if (map) {
+      setBoundsToData();
+      addHeatMap(hideHeatMap);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [map]);
+  }, [map, hideHeatMap, reports]);
 
   return (
     <GoogleMap mapContainerStyle={mapStyles} onLoad={(map) => setMap(map)}>
-      {!props.hideMarker &&
+      {!hideMarker &&
         data.map((e, index) => <MarkerWithWindow data={e} key={index} />)}
     </GoogleMap>
   );

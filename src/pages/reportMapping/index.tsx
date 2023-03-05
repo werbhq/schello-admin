@@ -1,69 +1,73 @@
 import { useEffect, useState } from "react";
 import { useLoadScript } from "@react-google-maps/api";
-
-import {
-  Card,
-  CardHeader,
-  CircularProgress,
-  FormControlLabel,
-  Stack,
-  Switch,
-  Typography,
-} from "@mui/material";
+import { Card, CardHeader, Stack, Typography } from "@mui/material";
 import GoogleMapCustom from "./components/GoogleMapCustom";
 import AuthenticatedExcise from "../../components/auth/AuthenticatedExcise";
 import { Report } from "../../types/Report";
 import { getTestData } from "./constants";
+import PageLoader from "../../components/ui/PageLoader";
+import { useGetList } from "react-admin";
+import { MAPPING } from "../../provider/mapping";
+import { SwitchCustom } from "../../components/ui/SwitchCustom";
+
+const libraries: (
+  | "places"
+  | "visualization"
+  | "geometry"
+  | "drawing"
+  | "localContext"
+)[] = ["places", "visualization", "geometry"];
 
 function MapContainer() {
-  const { isLoaded, loadError } = useLoadScript({
+  const { isLoaded: isMapsLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_API_KEY ?? "",
-    libraries: ["places", "visualization", "geometry"],
+    libraries: libraries,
   });
 
+  const { isLoading, data: liveReports } = useGetList<Report>(
+    MAPPING.DRUG_REPORTS
+  );
+
   const [data, setData] = useState<Report[]>([]);
-  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [useLiveData, setUseLiveData] = useState(false);
   const [hideMarkers, setHideMarkers] = useState(true);
   const [hideHeatMap, setHideHeatMap] = useState(false);
 
   useEffect(() => {
-    setIsDataLoaded(false);
-    // TODO: Get data from firebase and map them into points
-    // Fetching data similar
-    const fetch_data = getTestData();
-    // This creates a fake api call of 2s (2000)
-    new Promise((resolve) => setTimeout(resolve, 2000)).then((e) => {
-      setData(fetch_data);
-      setIsDataLoaded(true);
-    });
-  }, []);
+    const x = useLiveData ? liveReports ?? [] : getTestData();
+    setData(x);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [useLiveData]);
 
   if (loadError) return <div>Map cannot be loaded right now, sorry.</div>;
 
-  if (!(isLoaded && isDataLoaded)) {
-    return <CircularProgress sx={{ margin: "20px" }} />;
+  if (!(isMapsLoaded && !isLoading)) {
+    return <PageLoader loading={true} />;
   }
 
   return (
     <>
       <Stack direction="row" spacing={2}>
         <Typography style={{ margin: "12px" }}>
-          Sample Based on {data.length} reports
+          Based on <span style={{ fontWeight: "bold" }}>{data.length}</span>
+          {useLiveData ? " " : " Sample"} reports
         </Typography>
 
-        <FormControlLabel
-          control={
-            <Switch
-              checked={hideHeatMap}
-              onChange={(e) => setHideHeatMap(e.target.checked)}
-            />
-          }
-          label="Hide Heat Map"
+        <SwitchCustom
+          label="Live Data"
+          enable={useLiveData}
+          setEnable={setUseLiveData}
         />
-        <FormControlLabel
-          control={<Switch checked={hideMarkers} />}
-          onChange={(e, checked) => setHideMarkers(checked)}
+        <SwitchCustom
+          label="Hide Heat Map"
+          enable={hideHeatMap}
+          setEnable={setHideHeatMap}
+        />
+        <SwitchCustom
           label="Hide Markers"
+          enable={hideMarkers}
+          setEnable={setHideMarkers}
         />
       </Stack>
 
@@ -76,15 +80,15 @@ function MapContainer() {
   );
 }
 
-const CrimeMapping = () => {
+const ReportMapping = () => {
   return (
     <AuthenticatedExcise>
       <Card>
-        <CardHeader title="Crime Mapping" />
+        <CardHeader title="Report Mapping" />
         <MapContainer />
       </Card>
     </AuthenticatedExcise>
   );
 };
 
-export default CrimeMapping;
+export default ReportMapping;

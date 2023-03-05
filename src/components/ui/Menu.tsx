@@ -25,8 +25,8 @@ export const CustomMenu = () => {
       <SubMenu name="Crime Mapping" icon={<LocalPoliceIcon />}>
         <Menu.ResourceItem name={MAPPING.STUDENTS} />
         <Menu.Item
-          to={MAPPING.CRIME_MAPPING}
-          primaryText="Map"
+          to={MAPPING.REPORT_MAP}
+          primaryText="Report Map"
           leftIcon={<MapIcon />}
         />
         <Menu.ResourceItem name={MAPPING.WANTED_LIST} />

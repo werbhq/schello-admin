@@ -13,7 +13,7 @@ import { authProvider, dataProvider } from "./provider/firebase";
 import { CustomLayout } from "./components/ui/Layout";
 import DrugReport from "./pages/drugReports";
 import Events from "./pages/general/events";
-import CrimeMapping from "./pages/reportMapping";
+import ReportMapping from "./pages/reportMapping";
 import CommunityVideo from "./pages/community/video";
 import CommunityArticle from "./pages/community/article";
 import GeneralNews from "./pages/general/news";
@@ -62,11 +62,10 @@ const App = () => (
     <Resource {...WantedList} />
 
     <CustomRoutes>
-      <Route path={MAPPING.CRIME_MAPPING} element={<CrimeMapping />} />
+      <Route path={MAPPING.REPORT_MAP} element={<ReportMapping />} />
       <Route path={MAPPING.PASSWORD} element={<ChangePassword />} />
     </CustomRoutes>
   </Admin>
 );
 
 export default App;
-

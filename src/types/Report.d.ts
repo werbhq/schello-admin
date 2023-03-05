@@ -15,6 +15,7 @@ export interface FacialData {
     | "NONE";
 }
 export interface Report {
+  id: string;
   dateIncident: string;
   timeFrom: string;
   timeTo: string;
