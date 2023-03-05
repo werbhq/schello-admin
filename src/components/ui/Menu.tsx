@@ -37,7 +37,7 @@ export const CustomMenu = () => {
         <Menu.Item
           to={MAPPING.ROUTER_PATH.WANTED_MAP}
           leftIcon={<ListIcon />}
-          primaryText="Wanted"
+          primaryText="Wanted List"
         />
       </SubMenu>
       <Menu.Item

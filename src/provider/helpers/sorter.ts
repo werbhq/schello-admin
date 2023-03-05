@@ -56,6 +56,8 @@ export function sorter<T extends RaRecord>(params: GetListParams, data: T[]) {
             return e[field].includes(value);
           } else if (typeof e[field] === "boolean") {
             return e[field] === value;
+          } else if (e[field] === null) {
+            return false;
           }
           return true;
         });

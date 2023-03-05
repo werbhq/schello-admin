@@ -1,4 +1,4 @@
-import { Report } from "../../../../types/Report";
+import { Report } from "../../../types/Report";
 
 export type ReportMap = {
   reports: Report[];

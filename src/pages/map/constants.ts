@@ -1,4 +1,12 @@
-import { Report } from "../../../types/Report";
+import { Report } from "../../types/Report";
+
+export const libraries: (
+  | "places"
+  | "visualization"
+  | "geometry"
+  | "drawing"
+  | "localContext"
+)[] = ["places", "visualization", "geometry"];
 
 export const getTestData = () => {
   const randomIntFromInterval = (min: number, max: number) =>
@@ -10,90 +18,74 @@ export const getTestData = () => {
     0.001 *
     randomIntFromInterval(1, 10);
 
+  const common = {
+    id: "",
+    dateIncident: "2023-01-05T23:28:57.517Z",
+    timeFrom: "2023-01-05T23:28:57.517Z",
+    timeTo: "2023-01-06T01:28:57.517Z",
+    description: "Hello how are you I am doing great. Hope you are fine",
+    studentId: null,
+    facialData: null,
+    wantedPersonId: null,
+  };
+
   const reportData: Report[] = [
     {
-      id: "",
-      dateIncident: "2023-01-05T23:28:57.517Z",
-      timeFrom: "2023-01-05T23:28:57.517Z",
-      timeTo: "2023-01-06T01:28:57.517Z",
+      ...common,
       category: "USAGE_CONFIRMED",
-      description: "Hello how are you I am doing great. Hope you are fine",
+      status: "IN-PROGRESS",
       location: {
         title:
           "Sacred Heart Higher Secondary School, Q256+V6Q, Nalloornad, Kerala, Dwaraka - Kammana, Pulikkad, Mananthavady, Wayanad, Kerala, 670645, India",
-        id: "sadsadsafaas",
+        id: "",
         lat: 8.504957859331336,
         lon: 76.95102890905878,
       },
-      status: "IN-PROGRESS",
-      studentId: null,
-      facialData: null,
-      wantedPersonId: null,
     },
     {
-      id: "",
-      dateIncident: "2023-01-05T23:28:57.517Z",
-      timeFrom: "2023-01-05T23:28:57.517Z",
-      timeTo: "2023-01-06T01:28:57.517Z",
+      ...common,
       category: "USAGE_CONFIRMED",
-      description: "I am mak, you are doing great. Hope you are fine",
+      status: "NEW",
       location: {
         title: "Pattom, Thiruvananthapuram, Kerala, 695001, India",
-        id: "sadsadsafaas",
+        id: "",
         lat: 8.52126111750968,
         lon: 76.94227304347335,
       },
-      studentId: null,
-      facialData: null,
-      status: "NEW",
-      wantedPersonId: null,
     },
     {
-      id: "",
-      dateIncident: "2023-01-05T23:28:57.517Z",
-      timeFrom: "2023-01-05T23:28:57.517Z",
-      timeTo: "2023-01-06T01:28:57.517Z",
+      ...common,
       category: "USAGE_CONFIRMED",
+      status: "DONE",
       description: "I am mak, you are doing great. Hope you are fine",
       location: {
         title: "Pattom, Thiruvananthapuram, Kerala, 695001, India",
-        id: "sadsadsafaas",
+        id: "",
         lat: 8.54793132911216,
         lon: 76.91644679508131,
       },
-      status: "DONE",
-      studentId: null,
-      facialData: null,
-      wantedPersonId: null,
     },
     {
-      id: "",
-      dateIncident: "2023-01-05T23:28:57.517Z",
-      timeFrom: "2023-01-05T23:28:57.517Z",
-      timeTo: "2023-01-06T01:28:57.517Z",
+      ...common,
       category: "USAGE_CONFIRMED",
-      description: "I am mak, you are doing great. Hope you are fine",
+      status: "DONE",
       location: {
         title: "Pattom, Thiruvananthapuram, Kerala, 695001, India",
-        id: "58438487",
+        id: "",
         lat: 8.54793132911216,
         lon: 76.91644679508131,
       },
-      status: "DONE",
-      studentId: null,
-      facialData: null,
-      wantedPersonId: null,
     },
   ];
 
   const data = [...reportData];
 
-  reportData.forEach((e) => {
+  reportData.forEach((e, index) => {
     for (let j = 0; j < randomIntFromInterval(10, 50); j++)
       data.push({
         ...reportData[randomIntFromInterval(0, 3)],
         location: {
-          id: "",
+          id: `${index + 4 + j}`,
           title: "",
           lat: e.location.lat + coordinateVariance(),
           lon: e.location.lon + coordinateVariance(),
@@ -104,12 +96,15 @@ export const getTestData = () => {
   return data;
 };
 
-export const getStatusMarkerIcon = (status: Report["status"]) => {
-  const STATUS_COLOR = new Map<Report["status"], string>([
+type STATUS = Report["status"] | "MULTIPLE";
+
+export const getStatusMarkerIcon = (status: STATUS) => {
+  const STATUS_COLOR = new Map<STATUS, string>([
     ["NEW", "#03a9f4"],
     ["IN-PROGRESS", "#ffc400"],
     ["DONE", "#4caf50"],
     ["SPAM", "#ef5350"],
+    ["MULTIPLE", "#d500f9"],
   ]);
 
   const pinSVGHole =

@@ -1,27 +1,20 @@
 import { useEffect, useState } from "react";
 import { useLoadScript } from "@react-google-maps/api";
 import { Card, CardHeader, Stack, Typography } from "@mui/material";
-import GoogleMapCustom from "./components/GoogleMapCustom";
-import AuthenticatedExcise from "../../../components/auth/AuthenticatedExcise";
-import { Report } from "../../../types/Report";
-import { getTestData } from "./constants";
-import PageLoader from "../../../components/ui/PageLoader";
+import GoogleMapCustom from "../../components/GoogleMapCustom";
+import AuthenticatedExcise from "../../../../components/auth/AuthenticatedExcise";
+import { Report } from "../../../../types/Report";
+import { getTestData, libraries } from "../../constants";
+import PageLoader from "../../../../components/ui/PageLoader";
 import { useGetList } from "react-admin";
-import { MAPPING } from "../../../provider/mapping";
-import { SwitchCustom } from "../../../components/ui/SwitchCustom";
-
-const libraries: (
-  | "places"
-  | "visualization"
-  | "geometry"
-  | "drawing"
-  | "localContext"
-)[] = ["places", "visualization", "geometry"];
+import { MAPPING } from "../../../../provider/mapping";
+import { SwitchCustom } from "../../../../components/ui/SwitchCustom";
+import { parseReports } from "../../helpers/parseReport";
 
 function MapContainer() {
   const { isLoaded: isMapsLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_API_KEY ?? "",
-    libraries: libraries,
+    libraries,
   });
 
   const { isLoading, data: liveReports } = useGetList<Report>(
@@ -34,17 +27,13 @@ function MapContainer() {
   const [hideHeatMap, setHideHeatMap] = useState(false);
 
   useEffect(() => {
-    const x = useLiveData ? liveReports ?? [] : getTestData();
-    setData(x);
-
+    const fetchedData = useLiveData ? liveReports ?? [] : getTestData();
+    setData(fetchedData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [useLiveData]);
 
   if (loadError) return <div>Map cannot be loaded right now, sorry.</div>;
-
-  if (!(isMapsLoaded && !isLoading)) {
-    return <PageLoader loading={true} />;
-  }
+  if (!(isMapsLoaded && !isLoading)) return <PageLoader loading={true} />;
 
   return (
     <>
@@ -72,7 +61,7 @@ function MapContainer() {
       </Stack>
 
       <GoogleMapCustom
-        data={data}
+        data={parseReports(data)}
         hideHeatMap={hideHeatMap}
         hideMarker={hideMarkers}
       />
@@ -84,7 +73,7 @@ const ReportMapping = () => {
   return (
     <AuthenticatedExcise>
       <Card>
-        <CardHeader title="Wanted Mapping" />
+        <CardHeader title="Report Mapping" />
         <MapContainer />
       </Card>
     </AuthenticatedExcise>

@@ -9,7 +9,7 @@ import { WantedPersonCreate } from "./Create";
 const WantedList: ResourceProps = {
   name: MAPPING.WANTED_LIST,
   icon,
-  options: { label: "Wanted" },
+  options: { label: "Wanted List" },
   list: WantedPersonList,
   show: WantedPersonShow,
   edit: WantedPersonEdit,

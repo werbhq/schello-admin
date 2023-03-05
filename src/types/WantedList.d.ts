@@ -1,6 +1,7 @@
 import { FacialData } from "./Report";
 
 export interface WantedList {
+  id: string;
   name: string;
   age: number;
   photoUrl: string;

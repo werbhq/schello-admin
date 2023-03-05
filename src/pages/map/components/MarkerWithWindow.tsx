@@ -1,13 +1,13 @@
 import { Chip, Stack, Typography } from "@mui/material";
 import { useState } from "react";
-import { STATUS_COLOR } from "../../../drugReports/constant";
+import { STATUS_COLOR } from "../../drugReports/constant";
 
 // Use all components ending with F (its a fix for react 18+)
 // Docs: https://react-google-maps-api-docs.netlify.app/
 import { InfoWindowF, MarkerF } from "@react-google-maps/api";
 import { getStatusMarkerIcon } from "../constants";
 import { Button, useRedirect } from "react-admin";
-import { MAPPING } from "../../../../provider/mapping";
+import { MAPPING } from "../../../provider/mapping";
 import { ReportMap } from "../helpers/parseReport";
 
 const headerStyle = { fontSize: "0.90rem", fontWeight: "bold" };
