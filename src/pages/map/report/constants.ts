@@ -1,4 +1,4 @@
-import { Report } from "../../types/Report";
+import { Report } from "../../../types/Report";
 
 export const getTestData = () => {
   const randomIntFromInterval = (min: number, max: number) =>

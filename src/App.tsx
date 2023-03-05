@@ -7,21 +7,22 @@ import {
 } from "react-admin";
 import red from "@mui/material/colors/red";
 import { Route } from "react-router-dom";
-
-import DashBoard from "./pages/dashboard/Dashboard";
 import { authProvider, dataProvider } from "./provider/firebase";
 import { CustomLayout } from "./components/ui/Layout";
+import { MAPPING } from "./provider/mapping";
+import { customQueryClient } from "./provider/queryClient";
+
+import DashBoard from "./pages/dashboard/Dashboard";
 import DrugReport from "./pages/drugReports";
 import Events from "./pages/general/events";
-import ReportMapping from "./pages/reportMapping";
+import ReportMapping from "./pages/map/report";
+import WantedMapping from "./pages/map/wanted";
 import CommunityVideo from "./pages/community/video";
 import CommunityArticle from "./pages/community/article";
 import GeneralNews from "./pages/general/news";
 import GeneralVideo from "./pages/general/video";
 import Students from "./pages/students";
 import ChangePassword from "./pages/changePassword";
-import { MAPPING } from "./provider/mapping";
-import { customQueryClient } from "./provider/queryClient";
 import WantedList from "./pages/wantedList";
 
 const myTheme: RaThemeOptions = {
@@ -62,8 +63,15 @@ const App = () => (
     <Resource {...WantedList} />
 
     <CustomRoutes>
-      <Route path={MAPPING.REPORT_MAP} element={<ReportMapping />} />
-      <Route path={MAPPING.PASSWORD} element={<ChangePassword />} />
+      <Route
+        path={MAPPING.ROUTER_PATH.REPORT_MAP}
+        element={<ReportMapping />}
+      />
+      <Route
+        path={MAPPING.ROUTER_PATH.WANTED_MAP}
+        element={<WantedMapping />}
+      />
+      <Route path={MAPPING.ROUTER_PATH.PASSWORD} element={<ChangePassword />} />
     </CustomRoutes>
   </Admin>
 );

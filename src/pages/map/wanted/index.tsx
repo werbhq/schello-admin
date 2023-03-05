@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { useLoadScript } from "@react-google-maps/api";
 import { Card, CardHeader, Stack, Typography } from "@mui/material";
 import GoogleMapCustom from "./components/GoogleMapCustom";
-import AuthenticatedExcise from "../../components/auth/AuthenticatedExcise";
-import { Report } from "../../types/Report";
+import AuthenticatedExcise from "../../../components/auth/AuthenticatedExcise";
+import { Report } from "../../../types/Report";
 import { getTestData } from "./constants";
-import PageLoader from "../../components/ui/PageLoader";
+import PageLoader from "../../../components/ui/PageLoader";
 import { useGetList } from "react-admin";
-import { MAPPING } from "../../provider/mapping";
-import { SwitchCustom } from "../../components/ui/SwitchCustom";
+import { MAPPING } from "../../../provider/mapping";
+import { SwitchCustom } from "../../../components/ui/SwitchCustom";
 
 const libraries: (
   | "places"
@@ -84,7 +84,7 @@ const ReportMapping = () => {
   return (
     <AuthenticatedExcise>
       <Card>
-        <CardHeader title="Report Mapping" />
+        <CardHeader title="Wanted Mapping" />
         <MapContainer />
       </Card>
     </AuthenticatedExcise>

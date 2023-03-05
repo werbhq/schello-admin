@@ -10,7 +10,11 @@ export const MAPPING = {
     EVENTS: "events",
   },
   STUDENTS: "students",
-  PASSWORD: "/change-password",
-  REPORT_MAP: "/report-map",
   WANTED_LIST: "wanted-list",
+
+  ROUTER_PATH: {
+    PASSWORD: "/change-password",
+    REPORT_MAP: "/report-map",
+    WANTED_MAP: "/wanted-map",
+  },
 };

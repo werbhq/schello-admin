@@ -6,6 +6,8 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import PublicIcon from "@mui/icons-material/Public";
 import PasswordIcon from "@mui/icons-material/Password";
 import MapIcon from "@mui/icons-material/Map";
+import SchoolIcon from "@mui/icons-material/School";
+import ListIcon from "@mui/icons-material/List";
 
 export const CustomMenu = () => {
   return (
@@ -22,17 +24,24 @@ export const CustomMenu = () => {
         <Menu.ResourceItem name={MAPPING.COMMUNITY.ARTICLE} />
         <Menu.ResourceItem name={MAPPING.COMMUNITY.VIDEO} />
       </SubMenu>
-      <SubMenu name="Crime Mapping" icon={<LocalPoliceIcon />}>
+      <SubMenu name="Crime Statistics" icon={<LocalPoliceIcon />}>
         <Menu.ResourceItem name={MAPPING.STUDENTS} />
-        <Menu.Item
-          to={MAPPING.REPORT_MAP}
-          primaryText="Report Map"
-          leftIcon={<MapIcon />}
-        />
         <Menu.ResourceItem name={MAPPING.WANTED_LIST} />
       </SubMenu>
+      <SubMenu name="Crime Mapping" icon={<MapIcon />}>
+        <Menu.Item
+          to={MAPPING.ROUTER_PATH.REPORT_MAP}
+          leftIcon={<SchoolIcon />}
+          primaryText="Report"
+        />
+        <Menu.Item
+          to={MAPPING.ROUTER_PATH.WANTED_MAP}
+          leftIcon={<ListIcon />}
+          primaryText="Wanted"
+        />
+      </SubMenu>
       <Menu.Item
-        to={MAPPING.PASSWORD}
+        to={MAPPING.ROUTER_PATH.PASSWORD}
         primaryText="Change Password"
         leftIcon={<PasswordIcon />}
       />

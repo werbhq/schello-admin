@@ -1,14 +1,14 @@
 import { Chip, Stack, Typography } from "@mui/material";
 import { useState } from "react";
-import { Report } from "../../../types/Report";
-import { STATUS_COLOR } from "../../drugReports/constant";
+import { Report } from "../../../../types/Report";
+import { STATUS_COLOR } from "../../../drugReports/constant";
 
 // Use all components ending with F (its a fix for react 18+)
 // Docs: https://react-google-maps-api-docs.netlify.app/
 import { InfoWindowF, MarkerF } from "@react-google-maps/api";
 import { getStatusMarkerIcon } from "../constants";
 import { Button, useRedirect } from "react-admin";
-import { MAPPING } from "../../../provider/mapping";
+import { MAPPING } from "../../../../provider/mapping";
 
 type ReportCustom = Omit<Report, "location"> & { location: google.maps.LatLng };
 
