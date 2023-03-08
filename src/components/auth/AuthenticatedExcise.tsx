@@ -25,8 +25,8 @@ const PasswordDialog = ({
 }) => {
   const [password, setPassword] = useState("");
 
-  const handleClose = () => {
-    ReportsPassAuth.setPassword(password);
+  const handleClose = async () => {
+    await ReportsPassAuth.setPassword(password);
     refetch();
   };
 

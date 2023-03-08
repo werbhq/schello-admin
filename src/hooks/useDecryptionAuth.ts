@@ -18,7 +18,7 @@ export const useDecryptionAuth = () => {
         redirect("/");
       },
       onSuccess(authorized) {
-        if (!authorized)
+        if (!authorized && ReportsPassAuth.isPasswordInLocalStore())
           notify(`Decryption password is incorrect`, { type: "error" });
       },
     }

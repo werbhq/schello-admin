@@ -5,7 +5,7 @@ import { ReportAPI } from "../api/report";
 const PASS_KEY = "reports_key";
 
 export class ReportsPassAuth {
-  static checkPasswordInLocalStore() {
+  static isPasswordInLocalStore() {
     const key = localStorage.getItem(PASS_KEY);
     return !!key;
   }

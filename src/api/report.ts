@@ -4,7 +4,7 @@ import { ReportsPassAuth } from "../utils/report_auth";
 
 export class ReportAPI {
   static AUTH = async () => {
-    if (!ReportsPassAuth.checkPasswordInLocalStore()) return false;
+    if (!ReportsPassAuth.isPasswordInLocalStore()) return false;
     const passwordHeader = await ReportsPassAuth.getHeaders();
     const { data } = await baseApi.get(`/report`, passwordHeader ?? {});
     if (data === "AUTHORIZED") return true;
