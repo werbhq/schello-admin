@@ -4,9 +4,9 @@ import {
   SimpleShowLayout,
   TextField,
 } from "react-admin";
-import AuthenticatedExcise from "../../components/auth/AuthenticatedExcise";
-import { MAPPING } from "../../provider/mapping";
-import { DrugListDataGrid } from "../drugReports/List";
+import AuthenticatedExcise from "components/auth/AuthenticatedExcise";
+import MAPPING from "provider/mapping";
+import { DrugListDataGrid } from "pages/drugReports/List";
 
 const StudentShow = () => (
   <AuthenticatedExcise>

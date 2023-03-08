@@ -1,5 +1,5 @@
 import icon from "@mui/icons-material/Newspaper";
-import { MAPPING } from "../../../provider/mapping";
+import MAPPING from "provider/mapping";
 import Create from "./Create";
 import Show from "./Show";
 import List from "./List";

@@ -5,8 +5,8 @@ import {
   SearchInput,
   FunctionField,
 } from "react-admin";
-import AuthenticatedExcise from "../../components/auth/AuthenticatedExcise";
-import { Student } from "../../types/Student";
+import AuthenticatedExcise from "components/auth/AuthenticatedExcise";
+import { Student } from "types/Student";
 
 const filters = [<SearchInput source="id" alwaysOn resettable />];
 

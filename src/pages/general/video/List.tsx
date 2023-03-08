@@ -12,8 +12,8 @@ import {
   UrlField,
   ImageField,
 } from "react-admin";
-import { convertSingleValueListToSelectList } from "../../../utils/helpers";
-import { PlatForm } from "../../../utils/platform";
+import { convertSingleValueListToSelectList } from "utils/helpers";
+import { PlatForm } from "utils/platform";
 
 export const VideoList = () => {
   const filters = [

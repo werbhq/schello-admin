@@ -6,9 +6,9 @@ import {
   NumberField,
   FunctionField,
 } from "react-admin";
-import FACE_DATA from "../../components/face/FaceData";
-import { WantedList } from "../../types/WantedList";
-import AuthenticatedExcise from "../../components/auth/AuthenticatedExcise";
+import FACE_DATA from "components/face/FaceData";
+import { WantedList } from "types/WantedList";
+import AuthenticatedExcise from "components/auth/AuthenticatedExcise";
 
 export const WantedPersonList = () => {
   return (

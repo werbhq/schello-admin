@@ -1,8 +1,8 @@
-import { baseApi } from ".";
-import { Report } from "../types/Report";
-import { ReportsPassAuth } from "../utils/report_auth";
+import baseApi from ".";
+import { Report } from "types/Report";
+import ReportsPassAuth from "utils/report_auth";
 
-export class ReportAPI {
+class ReportAPI {
   static AUTH = async () => {
     if (!ReportsPassAuth.isPasswordInLocalStore()) return false;
     const passwordHeader = await ReportsPassAuth.getHeaders();
@@ -80,3 +80,5 @@ export class ReportAPI {
     }
   };
 }
+
+export default ReportAPI;

@@ -7,13 +7,13 @@ import {
   FunctionField,
   ImageField,
 } from "react-admin";
-import AuthenticatedExcise from "../../components/auth/AuthenticatedExcise";
-import { MAPPING } from "../../provider/mapping";
+import AuthenticatedExcise from "components/auth/AuthenticatedExcise";
+import MAPPING from "provider/mapping";
 import { STATUS_COLOR } from "./constant";
 import { Chip } from "@mui/material";
 import LocationField from "./components/LocationField";
-import { FacialDataField } from "../../components/face/FaceField";
-import { Report } from "../../types/Report";
+import { FacialDataField } from "components/face/FaceField";
+import { Report } from "types/Report";
 
 const DrugShow = () => {
   return (

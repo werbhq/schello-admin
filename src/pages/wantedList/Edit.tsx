@@ -9,8 +9,8 @@ import {
   Toolbar,
   useRecordContext,
 } from "react-admin";
-import { FacialDataInput } from "../../components/face/FaceInput";
-import AuthenticatedExcise from "../../components/auth/AuthenticatedExcise";
+import { FacialDataInput } from "components/face/FaceInput";
+import AuthenticatedExcise from "components/auth/AuthenticatedExcise";
 
 const EditToolbar = (props: any) => (
   <Toolbar {...props}>

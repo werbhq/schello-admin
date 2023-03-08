@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Card, CardHeader, Stack, TextField } from "@mui/material";
-import AuthenticatedExcise from "../../components/auth/AuthenticatedExcise";
 import { useNotify } from "react-admin";
-import { ReportAPI } from "../../api/report";
-import DialogPrompt from "./components/DialogPrompt";
 import { LoadingButton } from "@mui/lab";
+import AuthenticatedExcise from "components/auth/AuthenticatedExcise";
+import ReportAPI from "api/report";
+import DialogPrompt from "./components/DialogPrompt";
 
 const ChangePassword = () => {
   const [oldPassword, setOldPassword] = useState("");

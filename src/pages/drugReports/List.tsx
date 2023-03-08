@@ -9,15 +9,15 @@ import {
   TextInput,
   SelectInput,
 } from "react-admin";
-import AuthenticatedExcise from "../../components/auth/AuthenticatedExcise";
-import { MAPPING } from "../../provider/mapping";
+import AuthenticatedExcise from "components/auth/AuthenticatedExcise";
+import MAPPING from "provider/mapping";
 import { STATUS_COLOR, REPORT_STATUS, STATUS_TYPE } from "./constant";
 import { Chip } from "@mui/material";
 import LocationField from "./components/LocationField";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import LoopIcon from "@mui/icons-material/Loop";
 import DoneIcon from "@mui/icons-material/Done";
-import { Report } from "../../types/Report";
+import { Report } from "types/Report";
 
 const BulkActionButtons = () => (
   <>

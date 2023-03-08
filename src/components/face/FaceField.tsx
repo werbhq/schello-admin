@@ -1,7 +1,7 @@
 import { FormLabel, Stack, Typography } from "@mui/material";
 import { useRecordContext } from "react-admin";
 import FACE_DATA from "./FaceData";
-import { Report } from "../../types/Report";
+import { Report } from "types/Report";
 
 export const FacialDataField = () => {
   const { facialData }: { facialData: Report["facialData"] } =

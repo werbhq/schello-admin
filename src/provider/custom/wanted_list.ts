@@ -1,4 +1,4 @@
-import { MAPPING } from "../mapping";
+import MAPPING from "provider/mapping";
 import {
   ref,
   uploadBytes,
@@ -6,8 +6,8 @@ import {
   deleteObject,
 } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
-import { DataProviderCustom } from "../../types/DataProvider";
-import { dataProviderLegacy, storage } from "../firebase";
+import { DataProviderCustom } from "types/DataProvider";
+import { dataProviderLegacy, storage } from "provider/firebase";
 
 /**
  * Don't call this directly

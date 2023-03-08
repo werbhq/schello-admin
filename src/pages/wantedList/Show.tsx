@@ -9,10 +9,10 @@ import {
   TextField,
   TopToolbar,
 } from "react-admin";
-import { FacialDataField } from "../../components/face/FaceField";
-import { MAPPING } from "../../provider/mapping";
-import { DrugListDataGrid } from "../drugReports/List";
-import AuthenticatedExcise from "../../components/auth/AuthenticatedExcise";
+import { FacialDataField } from "components/face/FaceField";
+import MAPPING from "provider/mapping";
+import { DrugListDataGrid } from "pages/drugReports/List";
+import AuthenticatedExcise from "components/auth/AuthenticatedExcise";
 
 const WantedPersonShowAction = () => (
   <TopToolbar>

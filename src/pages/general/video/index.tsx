@@ -1,5 +1,5 @@
 import icon from "@mui/icons-material/VideoCall";
-import { MAPPING } from "../../../provider/mapping";
+import MAPPING from "provider/mapping";
 import VideoEdit from "./Edit";
 import VideoList from "./List";
 import VideoShow from "./Show";

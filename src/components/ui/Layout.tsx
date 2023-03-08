@@ -1,9 +1,6 @@
-// in src/MyLayout.js
-import * as React from "react";
 import { Layout } from "react-admin";
-
 import { ReactQueryDevtools } from "react-query/devtools";
-import { CustomMenu } from "./Menu";
+import CustomMenu from "./Menu";
 
 export const CustomLayout = (props: any) => {
   return (

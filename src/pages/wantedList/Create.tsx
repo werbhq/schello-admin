@@ -6,8 +6,8 @@ import {
   SimpleForm,
   TextInput,
 } from "react-admin";
-import { FacialDataInput } from "../../components/face/FaceInput";
-import AuthenticatedExcise from "../../components/auth/AuthenticatedExcise";
+import { FacialDataInput } from "components/face/FaceInput";
+import AuthenticatedExcise from "components/auth/AuthenticatedExcise";
 
 export const WantedPersonCreate = () => (
   <AuthenticatedExcise>

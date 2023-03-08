@@ -8,14 +8,14 @@ import {
   TextField,
   UrlField,
 } from "react-admin";
-import { news_type } from "./constant";
+import { newsList } from "./constant";
 
 export const ArticleShow = () => {
   return (
     <Show>
       <SimpleShowLayout>
         <TextField source="title" />
-        <SelectField choices={news_type} source="news_type" />
+        <SelectField choices={newsList} source="news_type" />
         <DateField
           source="timestamp"
           label="Date"

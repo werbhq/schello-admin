@@ -1,5 +1,5 @@
 import icon from "@mui/icons-material/Book";
-import { MAPPING } from "../../../provider/mapping";
+import MAPPING from "provider/mapping";
 import ArticleCreate from "./Create";
 import ArticleShow from "./Show";
 import ArticleList from "./List";

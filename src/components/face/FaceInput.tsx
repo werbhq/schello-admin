@@ -1,8 +1,8 @@
+import { useState } from "react";
 import { SelectInput, useRecordContext } from "react-admin";
 import FACE_DATA from "./FaceData";
-import { WantedList } from "../../types/WantedList";
+import { WantedList } from "types/WantedList";
 import { FormLabel, Stack } from "@mui/material";
-import { useState } from "react";
 
 export const FacialDataInput = ({ source, ...rest }: { source?: string }) => {
   const sourceString = source ?? "facialData";

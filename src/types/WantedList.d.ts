@@ -1,4 +1,4 @@
-import { FacialData } from "./Report";
+import { FacialData } from "Report";
 
 export interface WantedList {
   id: string;

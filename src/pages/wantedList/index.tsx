@@ -1,5 +1,5 @@
 import { ResourceProps } from "react-admin";
-import { MAPPING } from "../../provider/mapping";
+import MAPPING from "provider/mapping";
 import icon from "@mui/icons-material/List";
 import { WantedPersonList } from "./List";
 import { WantedPersonShow } from "./Show";

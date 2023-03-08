@@ -1,4 +1,4 @@
-export const MAPPING = {
+const MAPPING = {
   DRUG_REPORTS: "reports",
   COMMUNITY: {
     ARTICLE: "community-article",
@@ -18,3 +18,5 @@ export const MAPPING = {
     WANTED_MAP: "/wanted-map",
   },
 };
+
+export default MAPPING;

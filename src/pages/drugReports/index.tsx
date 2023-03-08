@@ -1,5 +1,5 @@
 import icon from "@mui/icons-material/Vaccines";
-import { MAPPING } from "../../provider/mapping";
+import MAPPING from "provider/mapping";
 import DrugList from "./List";
 import DrugShow from "./Show";
 import DrugEdit from "./Edit";

@@ -1,7 +1,7 @@
 import { Chip } from "@mui/material";
 import { FunctionField } from "ra-ui-materialui";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { Report } from "../../../types/Report";
+import { Report } from "types/Report";
 
 const LocationField = (props: any) => {
   return (

@@ -1,8 +1,8 @@
 import { useQuery } from "react-query";
-import { ReportsPassAuth } from "../utils/report_auth";
 import { useNotify, useRedirect } from "react-admin";
+import ReportsPassAuth from "utils/report_auth";
 
-export const useDecryptionAuth = () => {
+const useDecryptionAuth = () => {
   const notify = useNotify();
   const redirect = useRedirect();
 
@@ -29,3 +29,5 @@ export const useDecryptionAuth = () => {
     ...response,
   };
 };
+
+export default useDecryptionAuth;

@@ -1,9 +1,8 @@
-import { MAPPING } from "../mapping";
-
-import { ReportAPI } from "../../api/report";
-import { ReportsPassAuth } from "../../utils/report_auth";
-import { DataProviderCustom } from "../../types/DataProvider";
-import { sorter } from "../helpers/sorter";
+import MAPPING from "provider/mapping";
+import ReportAPI from "api/report";
+import ReportsPassAuth from "utils/report_auth";
+import { DataProviderCustom } from "types/DataProvider";
+import { sorter } from "provider/helpers/sorter";
 
 const handlePass = (res: { error: string }) => {
   if (res.error === "INVALID PASSWORD") {

@@ -1,10 +1,10 @@
 import CryptoJS from "crypto-js";
-import { authProvider } from "../provider/firebase";
-import { ReportAPI } from "../api/report";
+import { authProvider } from "provider/firebase";
+import ReportAPI from "api/report";
 
 const PASS_KEY = "reports_key";
 
-export class ReportsPassAuth {
+class ReportsPassAuth {
   static isPasswordInLocalStore() {
     const key = localStorage.getItem(PASS_KEY);
     return !!key;
@@ -50,3 +50,5 @@ export class ReportsPassAuth {
     localStorage.setItem(PASS_KEY, data);
   }
 }
+
+export default ReportsPassAuth;

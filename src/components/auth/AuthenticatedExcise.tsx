@@ -1,4 +1,4 @@
-import { ReportsPassAuth } from "../../utils/report_auth";
+import { ReactNode, useState } from "react";
 import {
   CircularProgress,
   Dialog,
@@ -10,9 +10,9 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { ReactNode, useState } from "react";
-import { useDecryptionAuth } from "../../hooks/useDecryptionAuth";
 import { LoadingButton } from "@mui/lab";
+import useDecryptionAuth from "hooks/useDecryptionAuth";
+import ReportsPassAuth from "utils/report_auth";
 
 const PasswordDialog = ({
   refetch,

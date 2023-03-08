@@ -9,10 +9,9 @@ import {
   FormControl,
   InputLabel,
 } from "@mui/material";
-import GoogleMapCustom from "../../components/GoogleMapCustom";
-import AuthenticatedExcise from "../../../../components/auth/AuthenticatedExcise";
-import { Report } from "../../../../types/Report";
-import PageLoader from "../../../../components/ui/PageLoader";
+import AuthenticatedExcise from "components/auth/AuthenticatedExcise";
+import { Report } from "types/Report";
+import PageLoader from "components/ui/PageLoader";
 import {
   useGetList,
   ImageField,
@@ -20,11 +19,12 @@ import {
   SimpleShowLayout,
   FunctionField,
 } from "react-admin";
-import { MAPPING } from "../../../../provider/mapping";
-import { SwitchCustom } from "../../../../components/ui/SwitchCustom";
-import { parseReports } from "../../helpers/parseReport";
-import { libraries } from "../../constants";
-import { WantedList } from "../../../../types/WantedList";
+import MAPPING from "provider/mapping";
+import { SwitchCustom } from "components/ui/SwitchCustom";
+import { WantedList } from "types/WantedList";
+import { libraries } from "pages/map/constants";
+import { parseReports } from "pages/map/helpers/parseReport";
+import GoogleMapCustom from "pages/map/components/GoogleMapCustom";
 
 const mapStyles = {
   height: "70vh",

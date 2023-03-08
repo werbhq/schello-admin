@@ -1,6 +1,6 @@
-import { MAPPING } from "../../../provider/mapping";
-import GeneralVideoIndex from "./../../general/video";
 import { ResourceProps } from "react-admin";
+import MAPPING from "provider/mapping";
+import GeneralVideoIndex from "pages/general/video";
 
 const CommunityVideo: ResourceProps = {
   ...GeneralVideoIndex,

@@ -3,12 +3,12 @@ import {
   FirebaseDataProvider,
   RAFirebaseOptions,
 } from "react-admin-firebase";
-import config from "./config.json";
-import CustomProviders from "./customProviders";
 import { getFunctions } from "firebase/functions";
 import { DataProvider } from "react-admin";
-import { useFirebaseEmulator } from "../config";
 import { getStorage } from "firebase/storage";
+import useFirebaseEmulator from "config";
+import config from "./config.json";
+import CustomProviders from "./customProviders";
 
 const options: RAFirebaseOptions = {};
 const isProd = process.env.NODE_ENV === "production";

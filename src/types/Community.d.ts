@@ -1,4 +1,4 @@
-import type { GeneralVideo } from "./General Awarness";
+import type { GeneralVideo } from "General Awarness";
 
 export interface CommunityVideo extends GeneralVideo {
   author: string;

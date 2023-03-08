@@ -1,4 +1,5 @@
 import { ReactNode, useState } from "react";
+import { useTranslate, useSidebarState } from "react-admin";
 import {
   List,
   MenuItem,
@@ -10,7 +11,6 @@ import {
 } from "@mui/material";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import ExpandLess from "@mui/icons-material/ExpandLess";
-import { useTranslate, useSidebarState } from "react-admin";
 
 const SubMenu = (props: {
   name: string;

@@ -1,5 +1,5 @@
-import { convertSingleValueListToSelectList } from "../../../utils/helpers";
+import { convertSingleValueListToSelectList } from "utils/helpers";
 
-export const news_type = ["EXTERNAL", "INTERNAL"].map(
+export const newsList = ["EXTERNAL", "INTERNAL"].map(
   convertSingleValueListToSelectList
 );

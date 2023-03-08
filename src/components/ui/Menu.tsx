@@ -1,6 +1,4 @@
 import { Menu } from "react-admin";
-import { MAPPING } from "../../provider/mapping";
-import SubMenu from "./SubMenu";
 import LocalPoliceIcon from "@mui/icons-material/LocalPolice";
 import GroupsIcon from "@mui/icons-material/Groups";
 import PublicIcon from "@mui/icons-material/Public";
@@ -8,8 +6,10 @@ import PasswordIcon from "@mui/icons-material/Password";
 import MapIcon from "@mui/icons-material/Map";
 import SchoolIcon from "@mui/icons-material/School";
 import ListIcon from "@mui/icons-material/List";
+import MAPPING from "provider/mapping";
+import SubMenu from "./SubMenu";
 
-export const CustomMenu = () => {
+const CustomMenu = () => {
   return (
     <Menu>
       <Menu.DashboardItem />
@@ -48,3 +48,5 @@ export const CustomMenu = () => {
     </Menu>
   );
 };
+
+export default CustomMenu;

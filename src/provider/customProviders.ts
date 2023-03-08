@@ -1,4 +1,4 @@
-import { DataProviderCustom } from "../types/DataProvider";
+import { DataProviderCustom } from "types/DataProvider";
 import { DrugReportsProvider } from "./custom/drug_reports";
 import { WantedListProvider } from "./custom/wanted_list";
 

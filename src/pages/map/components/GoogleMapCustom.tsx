@@ -5,7 +5,7 @@ import { GoogleMap } from "@react-google-maps/api";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import MarkerWithWindow from "./MarkerWithWindow";
-import { ReportMap } from "../helpers/parseReport";
+import { ReportMap } from "pages/map/helpers/parseReport";
 
 const mapStyles = {
   height: "80vh",

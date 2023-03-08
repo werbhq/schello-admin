@@ -1,4 +1,4 @@
-import type { MapData } from "./MapData";
+import type { MapData } from "MapData";
 
 export interface FacialData {
   hairType: "STRAIGHT" | "WAVY" | "CURLY" | "KINKY" | "NONE";

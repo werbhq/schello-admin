@@ -1,5 +1,5 @@
-import { Report } from "../../types/Report";
-import { convertSingleValueListToSelectList } from "../../utils/helpers";
+import { Report } from "types/Report";
+import { convertSingleValueListToSelectList } from "utils/helpers";
 
 export const CATEGORY_TYPE = [
   "USAGE_SUSPECTED",
