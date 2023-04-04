@@ -11,6 +11,7 @@ const MAPPING = {
   },
   STUDENTS: "students",
   WANTED_LIST: "wanted-list",
+  TRH: "threshold-value",
 
   ROUTER_PATH: {
     PASSWORD: "/change-password",
