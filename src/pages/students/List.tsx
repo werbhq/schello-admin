@@ -5,7 +5,7 @@ import {
   SearchInput,
   FunctionField,
   useGetOne,
-  Button,
+  Button
 } from "react-admin";
 import AuthenticatedExcise from "components/auth/AuthenticatedExcise";
 import { Student } from "types/Student";
@@ -14,6 +14,8 @@ import { Stack } from "@mui/system";
 import { Typography } from "@mui/material";
 import { useState } from "react";
 import DialogPrompt from "./components/DialogPrompt";
+import DoneIcon from "@mui/icons-material/Done";
+import CloseIcon from "@mui/icons-material/Close";
 
 const filters = [<SearchInput source="id" alwaysOn resettable />];
 
@@ -58,6 +60,19 @@ const ThreshHoldSection = ({
     </Stack>
   );
 };
+
+const InvestigateField = (record: Student) => {
+  const { data, isLoading } = useGetOne(MAPPING.TRH, { id: "theta" });
+
+  if (isLoading) return <></>;
+
+  return (
+    <span>
+      {record["reported"].length > data?.degree ? <DoneIcon /> : <CloseIcon />}
+    </span>
+  );
+};
+
 const StudentList = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [threshHold, setThreshHold] = useState<number>();
@@ -67,21 +82,17 @@ const StudentList = () => {
       <List exporter={false} filters={filters}>
         <ThreshHoldSection setThreshHold={setThreshHold} setOpen={setOpen} />
         <Datagrid rowClick="show">
-          <TextField source="id" />
           <TextField source="name" />
           <TextField source="classId" />
           <FunctionField
             source="reported"
             render={(resource: Student) => resource["reported"].length}
           ></FunctionField>
+
           <FunctionField
             source="reported"
-            label="investigate"
-            render={(resource: Student) =>
-              resource["reported"].length > (threshHold ?? 10)
-                ? "investigate"
-                : ""
-            }
+            label="Investigate"
+            render={(record: Student) => <InvestigateField {...record} />}
           ></FunctionField>
         </Datagrid>
       </List>

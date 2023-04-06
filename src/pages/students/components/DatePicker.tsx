@@ -25,7 +25,7 @@ export default function DatePickerValue({
           onChange={(newValue) => {
             update(MAPPING.STUDENTS, {
               id: record?.id,
-              data: { ...record, block: newValue?.toISOString() ?? "" },
+              data: { ...record, blockTill: newValue?.toISOString() ?? "" },
               previousData: record,
             });
           }}
