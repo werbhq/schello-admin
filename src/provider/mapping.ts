@@ -6,6 +6,7 @@ const MAPPING = {
   },
   GENERAL: {
     NEWS: "general-news",
+    GOOGLE_NEWS: "general-google-news",
     VIDEO: "general-video",
     EVENTS: "events",
   },

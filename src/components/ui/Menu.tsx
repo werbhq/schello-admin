@@ -18,6 +18,7 @@ const CustomMenu = () => {
       <SubMenu name="General" icon={<PublicIcon />}>
         <Menu.ResourceItem name={MAPPING.GENERAL.EVENTS} />
         <Menu.ResourceItem name={MAPPING.GENERAL.NEWS} />
+        <Menu.ResourceItem name={MAPPING.GENERAL.GOOGLE_NEWS} />
         <Menu.ResourceItem name={MAPPING.GENERAL.VIDEO} />
       </SubMenu>
       <SubMenu name="Community" icon={<GroupsIcon />}>
