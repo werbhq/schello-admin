@@ -9,13 +9,11 @@ import {
 } from "@mui/material";
 import MAPPING from "provider/mapping";
 import { useState } from "react";
-import { useUpdate } from "react-admin";
+import { useGetOne, useUpdate } from "react-admin";
 
 export default function DialogPrompt({
-  setThreshHold,
   setOpen,
 }: {
-  setThreshHold: React.Dispatch<React.SetStateAction<number | undefined>>;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [input, setInput] = useState<number>(1);
@@ -25,13 +23,14 @@ export default function DialogPrompt({
     data: { degree: input },
   });
 
+  const { data } = useGetOne(MAPPING.TRH, { id: "theta" });
+
   const handleClose = () => {
     setOpen(false);
   };
 
   const handleAnswer = () => {
     setOpen(false);
-    setThreshHold(input);
     update();
   };
 
@@ -42,7 +41,7 @@ export default function DialogPrompt({
         <DialogContentText>(Enter a number)</DialogContentText>
         <DialogActions>
           <Input
-            defaultValue={1}
+            defaultValue={data?.degree ?? 1}
             onChange={(e) => {
               setInput(parseInt(e.target.value));
             }}

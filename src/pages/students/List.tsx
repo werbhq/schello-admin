@@ -5,7 +5,6 @@ import {
   SearchInput,
   FunctionField,
   useGetOne,
-  Button
 } from "react-admin";
 import AuthenticatedExcise from "components/auth/AuthenticatedExcise";
 import { Student } from "types/Student";
@@ -16,47 +15,63 @@ import { useState } from "react";
 import DialogPrompt from "./components/DialogPrompt";
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
+import CircularProgress from "@mui/material/CircularProgress";
+import AutorenewRoundedIcon from "@mui/icons-material/AutorenewRounded";
+import IconButton from "@mui/material/IconButton";
 
 const filters = [<SearchInput source="id" alwaysOn resettable />];
 
 const ThreshHoldSection = ({
-  setThreshHold,
   setOpen,
 }: {
-  setThreshHold: React.Dispatch<React.SetStateAction<number | undefined>>;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const changeHandle = () => {
     setOpen(true);
   };
 
-  const { data, isLoading } = useGetOne(
-    MAPPING.TRH,
-    { id: "theta" },
-    {
-      onSuccess: (data) => setThreshHold(data?.degree),
-
-      onError: (error) => {
-        console.log("ERROR", error);
-      },
-    }
-  );
+  const { data, isLoading, isError } = useGetOne(MAPPING.TRH, { id: "theta" });
 
   if (isLoading) {
-    return <></>;
+    return <CircularProgress />;
   }
+  if (isError) return <span></span>;
 
   return (
     <Stack
       direction="row"
       justifyContent="left"
       alignItems="left"
-      spacing={2}
-      margin={5}
+      spacing={1}
+      margin={2}
+      marginBottom={0}
+      fontSize="0.875rem"
+      padding={1.5}
+      sx={{ backgroundColor: "#F5F5F5" }}
     >
-      <Typography>Threshold value set now</Typography>
-      <Typography sx={{ color: "red" }}>{data?.degree ?? "none"}</Typography>
-      <Button label="change" onClick={changeHandle} />
+      <Typography fontSize="inherit">Threshold Value</Typography>
+      <Typography
+        color="blue"
+        sx={{
+          backgroundColor: "white",
+          padding: "0px 4px",
+          borderRadius: "3px",
+        }}
+        fontSize="inherit"
+      >
+        {data?.degree ?? "none"}
+      </Typography>
+      <IconButton
+        sx={{
+          fontSize: "inherit",
+          fontWeight: "inherit",
+          padding: "0",
+          color: "blue",
+        }}
+        onClick={changeHandle}
+      >
+        <AutorenewRoundedIcon />
+      </IconButton>
     </Stack>
   );
 };
@@ -75,12 +90,11 @@ const InvestigateField = (record: Student) => {
 
 const StudentList = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const [threshHold, setThreshHold] = useState<number>();
-  console.log(threshHold);
+
   return (
     <AuthenticatedExcise>
       <List exporter={false} filters={filters}>
-        <ThreshHoldSection setThreshHold={setThreshHold} setOpen={setOpen} />
+        <ThreshHoldSection setOpen={setOpen} />
         <Datagrid rowClick="show">
           <TextField source="name" />
           <TextField source="classId" />
@@ -97,11 +111,7 @@ const StudentList = () => {
         </Datagrid>
       </List>
 
-      {open ? (
-        <DialogPrompt setOpen={setOpen} setThreshHold={setThreshHold} />
-      ) : (
-        ""
-      )}
+      {open ? <DialogPrompt setOpen={setOpen} /> : ""}
     </AuthenticatedExcise>
   );
 };
