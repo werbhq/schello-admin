@@ -20,6 +20,7 @@ import WantedMapping from "pages/map/pages/wanted";
 import CommunityVideo from "pages/community/video";
 import CommunityArticle from "pages/community/article";
 import GeneralNews from "pages/general/news";
+import GoogleNews from "pages/general/google-news";
 import GeneralVideo from "pages/general/video";
 import Students from "pages/students";
 import ChangePassword from "pages/changePassword";
@@ -58,6 +59,7 @@ const App = () => (
     <Resource {...CommunityArticle} />
     <Resource {...CommunityVideo} />
     <Resource {...GeneralNews} />
+    <Resource {...GoogleNews} />
     <Resource {...GeneralVideo} />
     <Resource {...Students} />
     <Resource {...WantedList} />
