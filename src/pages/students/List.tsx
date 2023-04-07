@@ -16,7 +16,7 @@ import DialogPrompt from "./components/DialogPrompt";
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
 import CircularProgress from "@mui/material/CircularProgress";
-import AutoRenewRoundedIcon from "@mui/icons-material/AutorenewRounded";
+import EditIcon from "@mui/icons-material/Edit";
 import IconButton from "@mui/material/IconButton";
 
 const filters = [<SearchInput source="id" alwaysOn resettable />];
@@ -38,37 +38,34 @@ const ThreshHoldSection = ({
   return (
     <Stack
       direction="row"
-      justifyContent="left"
-      alignItems="left"
       spacing={1}
       margin={2}
-      marginBottom={0}
       fontSize="0.875rem"
       padding={1.5}
-      sx={{ backgroundColor: "#F5F5F5" }}
+      width="fit-content"
+      sx={{ backgroundColor: "#F5F5F5", borderRadius: "5px" }}
     >
-      <Typography fontSize="inherit">Threshold Value</Typography>
+      <Typography fontSize="inherit">Report Threshold Value</Typography>
       <Typography
-        color="blue"
+        color="black"
         sx={{
           backgroundColor: "white",
-          padding: "0px 4px",
-          borderRadius: "3px",
+          padding: "0px 5px",
+          fontWeight: "bold",
+          fontSize: "inherit",
         }}
-        fontSize="inherit"
       >
         {data?.degree ?? "none"}
       </Typography>
       <IconButton
         sx={{
-          fontSize: "inherit",
-          fontWeight: "inherit",
           padding: "0",
-          color: "blue",
+          color: "#F1C043",
         }}
+        size="small"
         onClick={changeHandle}
       >
-        <AutoRenewRoundedIcon />
+        <EditIcon />
       </IconButton>
     </Stack>
   );

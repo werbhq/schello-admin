@@ -36,7 +36,7 @@ export default function DialogPrompt({
 
   return (
     <Dialog open={true} onClose={handleClose}>
-      <DialogTitle>Set Threshold</DialogTitle>
+      <DialogTitle>Set Report Threshold</DialogTitle>
       <DialogContent>
         <DialogContentText>Enter a number</DialogContentText>
         <DialogActions>
