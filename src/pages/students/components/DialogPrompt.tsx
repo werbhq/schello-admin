@@ -18,12 +18,12 @@ export default function DialogPrompt({
 }) {
   const [input, setInput] = useState<number>(1);
 
-  const [update] = useUpdate(MAPPING.TRH, {
+  const [update] = useUpdate(MAPPING.THRESHOLD, {
     id: "theta",
     data: { degree: input },
   });
 
-  const { data } = useGetOne(MAPPING.TRH, { id: "theta" });
+  const { data } = useGetOne(MAPPING.THRESHOLD, { id: "theta" });
 
   const handleClose = () => {
     setOpen(false);
@@ -36,9 +36,9 @@ export default function DialogPrompt({
 
   return (
     <Dialog open={true} onClose={handleClose}>
-      <DialogTitle>{"Set Threshold"}</DialogTitle>
+      <DialogTitle>Set Threshold</DialogTitle>
       <DialogContent>
-        <DialogContentText>(Enter a number)</DialogContentText>
+        <DialogContentText>Enter a number</DialogContentText>
         <DialogActions>
           <Input
             defaultValue={data?.degree ?? 1}

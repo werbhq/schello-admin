@@ -16,7 +16,7 @@ import DialogPrompt from "./components/DialogPrompt";
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
 import CircularProgress from "@mui/material/CircularProgress";
-import AutorenewRoundedIcon from "@mui/icons-material/AutorenewRounded";
+import AutoRenewRoundedIcon from "@mui/icons-material/AutorenewRounded";
 import IconButton from "@mui/material/IconButton";
 
 const filters = [<SearchInput source="id" alwaysOn resettable />];
@@ -26,16 +26,14 @@ const ThreshHoldSection = ({
 }: {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const changeHandle = () => {
-    setOpen(true);
-  };
+  const { data, isLoading, isError } = useGetOne(MAPPING.THRESHOLD, {
+    id: "theta",
+  });
 
-  const { data, isLoading, isError } = useGetOne(MAPPING.TRH, { id: "theta" });
-
-  if (isLoading) {
-    return <CircularProgress />;
-  }
+  if (isLoading) return <CircularProgress />;
   if (isError) return <span></span>;
+
+  const changeHandle = () => setOpen(true);
 
   return (
     <Stack
@@ -70,14 +68,14 @@ const ThreshHoldSection = ({
         }}
         onClick={changeHandle}
       >
-        <AutorenewRoundedIcon />
+        <AutoRenewRoundedIcon />
       </IconButton>
     </Stack>
   );
 };
 
 const InvestigateField = (record: Student) => {
-  const { data, isLoading } = useGetOne(MAPPING.TRH, { id: "theta" });
+  const { data, isLoading } = useGetOne(MAPPING.THRESHOLD, { id: "theta" });
 
   if (isLoading) return <></>;
 
