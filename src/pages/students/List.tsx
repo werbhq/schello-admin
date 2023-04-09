@@ -28,9 +28,12 @@ const ThreshHoldSection = ({
 }: {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const { data, isLoading, isError } = useGetOne(MAPPING.THRESHOLD, {
-    id: "theta",
-  });
+  const { data, isLoading, isError } = useGetOne(
+    MAPPING.ASSORTED_DATA.COLLECTION,
+    {
+      id: MAPPING.ASSORTED_DATA.REPORT_INVESTIGATE_DOC,
+    }
+  );
 
   if (isLoading) return <CircularProgress />;
   if (isError) return <span></span>;
@@ -62,7 +65,7 @@ const ThreshHoldSection = ({
               fontSize: "inherit",
             }}
           >
-            {data?.degree ?? "none"}
+            {data?.threshold ?? "none"}
           </Typography>
           <IconButton
             size="small"
@@ -89,13 +92,19 @@ const ThreshHoldSection = ({
 };
 
 const InvestigateField = (record: Student) => {
-  const { data, isLoading } = useGetOne(MAPPING.THRESHOLD, { id: "theta" });
+  const { data, isLoading } = useGetOne(MAPPING.ASSORTED_DATA.COLLECTION, {
+    id: MAPPING.ASSORTED_DATA.REPORT_INVESTIGATE_DOC,
+  });
 
   if (isLoading) return <></>;
 
   return (
     <span>
-      {record["reported"].length > data?.degree ? <DoneIcon /> : <CloseIcon />}
+      {record["reported"].length > data?.threshold ? (
+        <DoneIcon />
+      ) : (
+        <CloseIcon />
+      )}
     </span>
   );
 };

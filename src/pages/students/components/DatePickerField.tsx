@@ -7,6 +7,8 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { Student } from "types/Student";
 import { useUpdate } from "react-admin";
 import MAPPING from "provider/mapping";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { Stack, Typography } from "@mui/material";
 
 const DatePickerField = () => {
@@ -18,25 +20,46 @@ const DatePickerField = () => {
   const date = record?.blockTill ? dayjs(record?.blockTill) : null;
 
   return (
-    <Stack direction="column" display={"flex"}>
+    <Stack direction="column">
       <Typography fontSize="0.75em" color="rgba(0, 0, 0, 0.6)">
         Blocked Till
       </Typography>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DemoContainer components={["DatePicker", "DatePicker"]}>
-          <DatePicker
-            label="Date"
-            value={date}
-            onChange={(newValue) => {
+      <Stack direction="row" spacing="1" height="5rem">
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={["DatePicker", "DatePicker"]}>
+            <DatePicker
+              label="Date"
+              value={date}
+              format="DD-MM-YYYY"
+              onChange={(newValue) => {
+                update(MAPPING.STUDENTS, {
+                  id: record?.id,
+                  data: {
+                    ...record,
+                    blockTill: newValue?.toISOString() ?? null,
+                  },
+                  previousData: record,
+                });
+              }}
+            />
+          </DemoContainer>
+          <IconButton
+            disableRipple
+            onClick={() => {
               update(MAPPING.STUDENTS, {
                 id: record?.id,
-                data: { ...record, blockTill: newValue?.toISOString() ?? null },
+                data: {
+                  ...record,
+                  blockTill: null,
+                },
                 previousData: record,
               });
             }}
-          />
-        </DemoContainer>
-      </LocalizationProvider>
+          >
+            <DeleteIcon />
+          </IconButton>
+        </LocalizationProvider>
+      </Stack>
     </Stack>
   );
 };
