@@ -16,8 +16,10 @@ import DialogPrompt from "./components/DialogPrompt";
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
 import CircularProgress from "@mui/material/CircularProgress";
-import EditIcon from "@mui/icons-material/Edit";
+import InfoIcon from "@mui/icons-material/Info";
+import AutoRenewRoundedIcon from "@mui/icons-material/AutorenewRounded";
 import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
 
 const filters = [<SearchInput source="id" alwaysOn resettable />];
 
@@ -36,38 +38,53 @@ const ThreshHoldSection = ({
   const changeHandle = () => setOpen(true);
 
   return (
-    <Stack
-      direction="row"
-      spacing={1}
-      margin={2}
-      fontSize="0.875rem"
-      padding={1.5}
-      width="fit-content"
-      sx={{ backgroundColor: "#F5F5F5", borderRadius: "5px" }}
-    >
-      <Typography fontSize="inherit">Report Threshold Value</Typography>
-      <Typography
-        color="black"
-        sx={{
-          backgroundColor: "white",
-          padding: "0px 5px",
-          fontWeight: "bold",
-          fontSize: "inherit",
-        }}
-      >
-        {data?.degree ?? "none"}
-      </Typography>
-      <IconButton
-        sx={{
-          padding: "0",
-          color: "#F1C043",
-        }}
-        size="small"
-        onClick={changeHandle}
-      >
-        <EditIcon />
-      </IconButton>
-    </Stack>
+    <>
+      <Stack direction="row" width="fit-content">
+        <Stack
+          direction="row"
+          spacing={1}
+          margin={2}
+          marginRight={0}
+          fontSize="0.875rem"
+          padding={1.5}
+          width="fit-content"
+          sx={{ backgroundColor: "#F5F5F5", borderRadius: "5px" }}
+        >
+          <Typography fontSize="inherit">
+            Investigate Threshold Value
+          </Typography>
+          <Typography
+            color="black"
+            sx={{
+              backgroundColor: "white",
+              padding: "0px 5px",
+              fontWeight: "bold",
+              fontSize: "inherit",
+            }}
+          >
+            {data?.degree ?? "none"}
+          </Typography>
+          <IconButton
+            size="small"
+            onClick={changeHandle}
+            sx={{
+              padding: "0",
+              color: "#F1C043",
+            }}
+          >
+            <AutoRenewRoundedIcon />
+          </IconButton>
+        </Stack>
+        <Tooltip
+          title="If a students report count exceeds this number it will be flaged for Investigation"
+          placement="right"
+        >
+          <IconButton disableRipple size="small">
+            <InfoIcon />
+          </IconButton>
+        </Tooltip>
+      </Stack>
+    </>
   );
 };
 
