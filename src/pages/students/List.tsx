@@ -4,6 +4,7 @@ import {
   List,
   SearchInput,
   FunctionField,
+  DateField,
 } from "react-admin";
 import AuthenticatedExcise from "components/auth/AuthenticatedExcise";
 import { Student } from "types/Student";
@@ -29,13 +30,19 @@ const StudentList = () => {
           <FunctionField
             source="reported"
             render={(resource: Student) => resource["reported"].length}
-          ></FunctionField>
-
+          />
+          <DateField
+            source="blockTill"
+            label="Blocked Till"
+            showDate={true}
+            locales={"en-GB"}
+            emptyText="-"
+          />
           <FunctionField
             source="reported"
             label="Investigate"
             render={(record: Student) => <InvestigateField {...record} />}
-          ></FunctionField>
+          />
         </Datagrid>
       </List>
 

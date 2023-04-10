@@ -3,13 +3,12 @@ import MAPPING from "provider/mapping";
 import { Stack } from "@mui/system";
 import { Typography } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
-import InfoIcon from "@mui/icons-material/Info";
-import AutoRenewRoundedIcon from "@mui/icons-material/AutorenewRounded";
+import EditIcon from "@mui/icons-material/Edit";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import { Student } from "types/Student";
-import DoneIcon from "@mui/icons-material/Done";
-import CloseIcon from "@mui/icons-material/Close";
+import CheckIcon from "@mui/icons-material/Done";
+import CrossIcon from "@mui/icons-material/Close";
 
 export const ThresholdField = ({
   setOpen,
@@ -17,9 +16,9 @@ export const ThresholdField = ({
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { data, isLoading, isError } = useGetOne(
-    MAPPING.ASSORTED_DATA.COLLECTION,
+    MAPPING.CONFIG.COLLECTION_NAME,
     {
-      id: MAPPING.ASSORTED_DATA.REPORT_INVESTIGATE_DOC,
+      id: MAPPING.CONFIG.STUDENT_REPORT_THRESHOLD_DOC,
     }
   );
 
@@ -44,44 +43,30 @@ export const ThresholdField = ({
           <Typography fontSize="inherit">
             Investigate Threshold Value
           </Typography>
-          <Typography
-            color="black"
-            sx={{
-              backgroundColor: "white",
-              padding: "0px 5px",
-              fontWeight: "bold",
-              fontSize: "inherit",
-            }}
-          >
-            {data?.threshold ?? "none"}
-          </Typography>
-          <IconButton
-            size="small"
-            onClick={changeHandle}
-            sx={{
-              padding: "0",
-              color: "#F1C043",
-            }}
-          >
-            <AutoRenewRoundedIcon />
+          <Tooltip title="If a students report count exceeds this number it will be flagged for Investigation">
+            <Typography
+              sx={{
+                backgroundColor: "white",
+                padding: "0px 5px",
+                fontWeight: "bold",
+                fontSize: "inherit",
+              }}
+            >
+              {data?.threshold ?? "none"}
+            </Typography>
+          </Tooltip>
+          <IconButton size="small" onClick={changeHandle} sx={{ padding: "0" }}>
+            <EditIcon />
           </IconButton>
         </Stack>
-        <Tooltip
-          title="If a students report count exceeds this number it will be flaged for Investigation"
-          placement="right"
-        >
-          <IconButton disableRipple size="small">
-            <InfoIcon />
-          </IconButton>
-        </Tooltip>
       </Stack>
     </>
   );
 };
 
 export const InvestigateField = (record: Student) => {
-  const { data, isLoading } = useGetOne(MAPPING.ASSORTED_DATA.COLLECTION, {
-    id: MAPPING.ASSORTED_DATA.REPORT_INVESTIGATE_DOC,
+  const { data, isLoading } = useGetOne(MAPPING.CONFIG.COLLECTION_NAME, {
+    id: MAPPING.CONFIG.STUDENT_REPORT_THRESHOLD_DOC,
   });
 
   if (isLoading) return <></>;
@@ -89,9 +74,9 @@ export const InvestigateField = (record: Student) => {
   return (
     <span>
       {record["reported"].length > data?.threshold ? (
-        <DoneIcon />
+        <CheckIcon />
       ) : (
-        <CloseIcon />
+        <CrossIcon />
       )}
     </span>
   );

@@ -18,13 +18,13 @@ export default function DialogPrompt({
 }) {
   const [input, setInput] = useState<number>(1);
 
-  const [update] = useUpdate(MAPPING.ASSORTED_DATA.COLLECTION, {
-    id: MAPPING.ASSORTED_DATA.REPORT_INVESTIGATE_DOC,
+  const [update] = useUpdate(MAPPING.CONFIG.COLLECTION_NAME, {
+    id: MAPPING.CONFIG.STUDENT_REPORT_THRESHOLD_DOC,
     data: { threshold: input },
   });
 
-  const { data } = useGetOne(MAPPING.ASSORTED_DATA.COLLECTION, {
-    id: MAPPING.ASSORTED_DATA.REPORT_INVESTIGATE_DOC,
+  const { data } = useGetOne(MAPPING.CONFIG.COLLECTION_NAME, {
+    id: MAPPING.CONFIG.STUDENT_REPORT_THRESHOLD_DOC,
   });
 
   const handleClose = () => setOpen(false);
@@ -41,10 +41,9 @@ export default function DialogPrompt({
         <DialogContentText>Enter a number</DialogContentText>
         <DialogActions>
           <Input
+            type="number"
             defaultValue={data?.threshold ?? 1}
-            onChange={(e) => {
-              setInput(parseInt(e.target.value));
-            }}
+            onChange={(e) => setInput(parseInt(e.target.value))}
           />
           <Button onClick={handleAnswer}>submit</Button>
         </DialogActions>

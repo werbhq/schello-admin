@@ -1,4 +1,4 @@
-import { useRecordContext } from "react-admin";
+import { useRecordContext, useRefresh } from "react-admin";
 import dayjs from "dayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -14,6 +14,7 @@ import { Stack, Typography } from "@mui/material";
 const DatePickerField = () => {
   const record = useRecordContext<Student>();
   const [update] = useUpdate();
+  const refresh = useRefresh();
 
   if (!record) return <></>;
 
@@ -40,6 +41,7 @@ const DatePickerField = () => {
                   },
                   previousData: record,
                 });
+                refresh();
               }}
             />
           </DemoContainer>

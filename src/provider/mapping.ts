@@ -12,9 +12,9 @@ const MAPPING = {
   },
   STUDENTS: "students",
   WANTED_LIST: "wanted-list",
-  ASSORTED_DATA: {
-    COLLECTION: "assorted-data",
-    REPORT_INVESTIGATE_DOC: "ReportInvestigateDoc",
+  CONFIG: {
+    COLLECTION_NAME: "config",
+    STUDENT_REPORT_THRESHOLD_DOC: "student-report-threshold",
   },
   ROUTER_PATH: {
     PASSWORD: "/change-password",
