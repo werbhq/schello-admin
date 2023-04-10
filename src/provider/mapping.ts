@@ -12,7 +12,10 @@ const MAPPING = {
   },
   STUDENTS: "students",
   WANTED_LIST: "wanted-list",
-
+  CONFIG: {
+    COLLECTION_NAME: "config",
+    STUDENT_REPORT_THRESHOLD_DOC: "student-report-threshold",
+  },
   ROUTER_PATH: {
     PASSWORD: "/change-password",
     REPORT_MAP: "/report-map",
