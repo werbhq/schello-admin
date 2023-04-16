@@ -18,7 +18,7 @@ export const ArticleList = () => {
   ];
 
   return (
-    <List filters={filters}>
+    <List filters={filters} sort={{ field: "timestamp", order: "DESC" }}>
       <Datagrid rowClick="show">
         <TextField source="title" />
         <SelectField choices={newsList} source="news_type" />

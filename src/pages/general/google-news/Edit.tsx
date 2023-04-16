@@ -7,7 +7,7 @@ import {
   TextInput,
   WithRecord,
 } from "react-admin";
-import { newsList } from "./constant";
+import { newsList } from "../news/constant";
 import { RichTextInput } from "ra-input-rich-text";
 import { useState } from "react";
 
@@ -23,16 +23,19 @@ const ArticleEdit = () => {
         }}
       />
       <SimpleForm>
-        <TextInput source="title" required />
+        <TextInput source="title" required disabled />
         <SelectInput
           choices={newsList}
           defaultValue={type}
           source="news_type"
           required
           onChange={(e) => setType(e.target.value)}
+          disabled
         />
-        <DateInput source="timestamp" label="Date" required />
-        {type === "EXTERNAL" && <TextInput source="redirect_url" required />}
+        <DateInput source="timestamp" label="Date" required disabled />
+        {type === "EXTERNAL" && (
+          <TextInput source="redirect_url" required disabled />
+        )}
         <RichTextInput source="description" isRequired />
         <BooleanInput source="visible" />
       </SimpleForm>

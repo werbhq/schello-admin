@@ -3,7 +3,7 @@ import MAPPING from "provider/mapping";
 import Create from "../news/Create";
 import Show from "../news/Show";
 import List from "../news/List";
-import Edit from "../news/Edit";
+import Edit from "./Edit";
 import { ResourceProps } from "react-admin";
 
 const GoogleNews: ResourceProps = {
