@@ -61,11 +61,11 @@ const App = () => (
             {...DrugReport}
             edit={isExcise ? undefined : DrugReport.edit}
           />
-          <Resource {...Events} />
 
           {!isExcise && <Resource {...CommunityArticle} />}
           {!isExcise && <Resource {...CommunityVideo} />}
 
+          {isExcise && <Resource {...Events} />}
           {isExcise && <Resource {...GeneralNews} />}
           {isExcise && <Resource {...GoogleNews} />}
           {isExcise && <Resource {...GeneralVideo} />}
