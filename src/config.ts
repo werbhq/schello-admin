@@ -2,7 +2,7 @@
  * Sets whether to use firebase emulator
  */
 
-const useFirebaseEmulator = true;
+const useFirebaseEmulator = false;
 export const EXCISE_TENANT = "excise";
 
 export default useFirebaseEmulator;

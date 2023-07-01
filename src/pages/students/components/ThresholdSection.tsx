@@ -9,18 +9,18 @@ import Tooltip from "@mui/material/Tooltip";
 import { StudentReport } from "types/Report";
 import CheckIcon from "@mui/icons-material/Done";
 import CrossIcon from "@mui/icons-material/Close";
+import useTenant from "hooks/useTenant";
+import { Config } from "types/Config";
 
 export const ThresholdField = ({
   setOpen,
 }: {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const { data, isLoading, isError } = useGetOne(
-    MAPPING.CONFIG.COLLECTION_NAME,
-    {
-      id: MAPPING.CONFIG.STUDENT_REPORT_THRESHOLD_DOC,
-    }
-  );
+  const tenant = useTenant();
+  const { data, isLoading, isError } = useGetOne<Config>(MAPPING.CONFIG, {
+    id: tenant,
+  });
 
   if (isLoading) return <CircularProgress />;
   if (isError) return <span></span>;
@@ -52,7 +52,7 @@ export const ThresholdField = ({
                 fontSize: "inherit",
               }}
             >
-              {data?.threshold ?? "none"}
+              {data?.studentThreshold ?? "none"}
             </Typography>
           </Tooltip>
           <IconButton size="small" onClick={changeHandle} sx={{ padding: "0" }}>
@@ -65,15 +65,15 @@ export const ThresholdField = ({
 };
 
 export const InvestigateField = (record: StudentReport) => {
-  const { data, isLoading } = useGetOne(MAPPING.CONFIG.COLLECTION_NAME, {
-    id: MAPPING.CONFIG.STUDENT_REPORT_THRESHOLD_DOC,
-  });
+  const tenant = useTenant();
+  const { data, isLoading } = useGetOne<Config>(MAPPING.CONFIG, { id: tenant });
 
   if (isLoading) return <></>;
+  if (!data) return <></>;
 
   return (
     <span>
-      {record["reported"].length > data?.threshold ? (
+      {record["reported"].length > data.studentThreshold ? (
         <CheckIcon />
       ) : (
         <CrossIcon />

@@ -7,24 +7,27 @@ import {
   Button,
   Input,
 } from "@mui/material";
+import useTenant from "hooks/useTenant";
 import MAPPING from "provider/mapping";
 import { useState } from "react";
 import { useGetOne, useUpdate } from "react-admin";
+import { Config } from "types/Config";
 
 export default function DialogPrompt({
   setOpen,
 }: {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const tenant = useTenant();
   const [input, setInput] = useState<number>(1);
 
-  const [update] = useUpdate(MAPPING.CONFIG.COLLECTION_NAME, {
-    id: MAPPING.CONFIG.STUDENT_REPORT_THRESHOLD_DOC,
-    data: { threshold: input },
+  const [update] = useUpdate<Config>(MAPPING.CONFIG, {
+    id: tenant,
+    data: { studentThreshold: input },
   });
 
-  const { data } = useGetOne(MAPPING.CONFIG.COLLECTION_NAME, {
-    id: MAPPING.CONFIG.STUDENT_REPORT_THRESHOLD_DOC,
+  const { data } = useGetOne<Config>(MAPPING.CONFIG, {
+    id: tenant,
   });
 
   const handleClose = () => setOpen(false);
@@ -42,7 +45,7 @@ export default function DialogPrompt({
         <DialogActions>
           <Input
             type="number"
-            defaultValue={data?.threshold ?? 1}
+            defaultValue={data?.studentThreshold ?? 1}
             onChange={(e) => setInput(parseInt(e.target.value))}
           />
           <Button onClick={handleAnswer}>submit</Button>
