@@ -19,11 +19,9 @@ class ReportsPassAuth {
   }
 
   static async getPassword() {
-    const user = await authProvider.getAuthUser();
     const key = localStorage.getItem(PASS_KEY);
     if (!key) return null;
-
-    return CryptoJS.AES.decrypt(key, user.uid).toString(CryptoJS.enc.Utf8);
+    return key;
   }
 
   static async getHeaders() {
