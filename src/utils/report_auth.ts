@@ -27,19 +27,15 @@ class ReportsPassAuth {
   }
 
   static async getHeaders() {
-    const user = await authProvider.getAuthUser();
-    const { tenant } = await authProvider.getPermissions({});
+    const authorization = await authProvider.getJWTToken();
+
     const key = localStorage.getItem(PASS_KEY);
     if (!key) return null;
 
-    const password = CryptoJS.AES.decrypt(key, user.uid).toString(
-      CryptoJS.enc.Utf8
-    );
-
     return {
       headers: {
-        authorization: password,
-        tenant,
+        authorization,
+        "x-access-key": key,
       },
     };
   }
