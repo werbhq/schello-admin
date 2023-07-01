@@ -1,3 +1,4 @@
+import useTenant from "hooks/useTenant";
 import { RichTextInput } from "ra-input-rich-text";
 import {
   BooleanInput,
@@ -10,8 +11,14 @@ import {
 } from "react-admin";
 
 const EventEdit = () => {
+  const tenant = useTenant();
+  const transform = (data: any) => ({
+    ...data,
+    tenant,
+  });
+
   return (
-    <Edit>
+    <Edit transform={transform}>
       <SimpleForm>
         <SelectInput
           source="mode"

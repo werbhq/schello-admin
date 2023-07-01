@@ -19,27 +19,27 @@ class ReportsPassAuth {
   }
 
   static async getPassword() {
-    const permissions = await authProvider.getAuthUser();
+    const user = await authProvider.getAuthUser();
     const key = localStorage.getItem(PASS_KEY);
     if (!key) return null;
 
-    return CryptoJS.AES.decrypt(key, permissions.uid).toString(
-      CryptoJS.enc.Utf8
-    );
+    return CryptoJS.AES.decrypt(key, user.uid).toString(CryptoJS.enc.Utf8);
   }
 
   static async getHeaders() {
-    const permissions = await authProvider.getAuthUser();
+    const user = await authProvider.getAuthUser();
+    const { tenant } = await authProvider.getPermissions({});
     const key = localStorage.getItem(PASS_KEY);
     if (!key) return null;
 
-    const password = CryptoJS.AES.decrypt(key, permissions.uid).toString(
+    const password = CryptoJS.AES.decrypt(key, user.uid).toString(
       CryptoJS.enc.Utf8
     );
 
     return {
       headers: {
         authorization: password,
+        tenant,
       },
     };
   }

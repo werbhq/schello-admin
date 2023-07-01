@@ -7,13 +7,13 @@ import {
   DateField,
 } from "react-admin";
 import AuthenticatedExcise from "components/auth/AuthenticatedExcise";
-import { Student } from "types/Student";
 import { useState } from "react";
 import DialogPrompt from "./components/DialogPrompt";
 import {
   ThresholdField,
   InvestigateField,
 } from "./components/ThresholdSection";
+import { StudentReport } from "types/Report";
 
 const filters = [<SearchInput source="id" alwaysOn resettable />];
 
@@ -26,10 +26,12 @@ const StudentList = () => {
         <ThresholdField setOpen={setOpen} />
         <Datagrid rowClick="show">
           <TextField source="name" />
+          <TextField source="admnNo" />
+          <TextField source="rollNo" />
           <TextField source="classId" />
           <FunctionField
             source="reported"
-            render={(resource: Student) => resource["reported"].length}
+            render={(resource: StudentReport) => resource["reported"].length}
           />
           <DateField
             source="blockTill"
@@ -41,7 +43,7 @@ const StudentList = () => {
           <FunctionField
             source="reported"
             label="Investigate"
-            render={(record: Student) => <InvestigateField {...record} />}
+            render={(record: StudentReport) => <InvestigateField {...record} />}
           />
         </Datagrid>
       </List>

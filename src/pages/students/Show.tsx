@@ -16,6 +16,8 @@ const StudentShow = () => {
         <SimpleShowLayout>
           <TextField source="id" />
           <TextField source="name" />
+          <TextField source="admnNo" />
+          <TextField source="rollNo" />
           <TextField source="classId" />
           <DatePickerField />
           <ReferenceArrayField

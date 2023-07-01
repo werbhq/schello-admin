@@ -39,11 +39,15 @@ class ReportAPI {
     return data;
   };
 
-  static update = async (id: string, status: Report["status"]) => {
+  static update = async (
+    id: string,
+    status: Report["status"],
+    studentConfirmed?: string
+  ) => {
     const passwordHeader = await ReportsPassAuth.getHeaders();
     const { data } = await baseApi.patch(
       `/report`,
-      { ids: [id], status },
+      { ids: [id], status, studentConfirmed },
       passwordHeader ?? {}
     );
     if (data.error) return data;
@@ -62,11 +66,16 @@ class ReportAPI {
   };
 
   static MIGRATE = async (oldPassword: string, newPassword: string) => {
+    const passwordHeader = await ReportsPassAuth.getHeaders();
     try {
-      await baseApi.post(`/report/migrate`, {
-        newPassword,
-        password: oldPassword,
-      });
+      await baseApi.post(
+        `/report/migrate`,
+        {
+          newPassword,
+          password: oldPassword,
+        },
+        passwordHeader ?? {}
+      );
       await ReportsPassAuth.setPassword(newPassword);
       return { success: true, message: "Migration is done" };
     } catch (error: any) {

@@ -5,7 +5,8 @@ import {
   SimpleShowLayout,
   ReferenceField,
   FunctionField,
-  ImageField,
+  ReferenceArrayField,
+  Datagrid,
 } from "react-admin";
 import AuthenticatedExcise from "components/auth/AuthenticatedExcise";
 import MAPPING from "provider/mapping";
@@ -14,12 +15,24 @@ import { Chip } from "@mui/material";
 import LocationField from "./components/LocationField";
 import { FacialDataField } from "components/face/FaceField";
 import { Report } from "types/Report";
+import useIsExcise from "hooks/useIsExcise";
 
 const DrugShow = () => {
+  const isExcise = useIsExcise();
+
   return (
     <AuthenticatedExcise>
       <Show>
         <SimpleShowLayout>
+          {isExcise && (
+            <FunctionField
+              source="tenant"
+              label="School"
+              render={(e: Report) => {
+                return `${e.tenant?.replace("-", " ").toLocaleUpperCase()}`;
+              }}
+            />
+          )}
           <DateField source="dateIncident" locales={"en-GB"} />
           <DateField
             source="timeFrom"
@@ -53,23 +66,40 @@ const DrugShow = () => {
             )}
           />
           <TextField source="description" />
+
+          <TextField
+            label="Student Name (Submitted)"
+            source="student.name"
+            emptyText="-"
+          />
+          <TextField
+            label="Student Class (Submitted)"
+            source="student.class"
+            emptyText="-"
+          />
+
+          <ReferenceArrayField
+            label="Possible Students"
+            reference={MAPPING.STUDENTS}
+            source="studentIds"
+            emptyText="-"
+          >
+            <Datagrid bulkActionButtons={false}>
+              <TextField source="name" />
+              <TextField source="admnNo" label="Admission No" />
+              <TextField source="rollNo" />
+              <TextField source="classId" />
+            </Datagrid>
+          </ReferenceArrayField>
+
           <ReferenceField
-            source="studentId"
+            label="Confirmed Student"
+            source="studentConfirmed"
             reference={MAPPING.STUDENTS}
             link="show"
             emptyText="-"
           >
             <TextField source="name" />
-          </ReferenceField>
-
-          <ReferenceField
-            source="wantedPersonId"
-            reference={MAPPING.WANTED_LIST}
-            link="show"
-            emptyText="-"
-          >
-            <TextField source="name" />
-            <ImageField source="photoUrl" emptyText="-" />
           </ReferenceField>
 
           <FacialDataField />

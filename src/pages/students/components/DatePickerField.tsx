@@ -4,7 +4,7 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { Student } from "types/Student";
+import { StudentReport } from "types/Report";
 import { useUpdate } from "react-admin";
 import MAPPING from "provider/mapping";
 import IconButton from "@mui/material/IconButton";
@@ -12,7 +12,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Stack, Typography } from "@mui/material";
 
 const DatePickerField = () => {
-  const record = useRecordContext<Student>();
+  const record = useRecordContext<StudentReport>();
   const [update] = useUpdate();
   const refresh = useRefresh();
 

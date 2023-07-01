@@ -6,7 +6,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import EditIcon from "@mui/icons-material/Edit";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import { Student } from "types/Student";
+import { StudentReport } from "types/Report";
 import CheckIcon from "@mui/icons-material/Done";
 import CrossIcon from "@mui/icons-material/Close";
 
@@ -64,7 +64,7 @@ export const ThresholdField = ({
   );
 };
 
-export const InvestigateField = (record: Student) => {
+export const InvestigateField = (record: StudentReport) => {
   const { data, isLoading } = useGetOne(MAPPING.CONFIG.COLLECTION_NAME, {
     id: MAPPING.CONFIG.STUDENT_REPORT_THRESHOLD_DOC,
   });

@@ -3,7 +3,7 @@ import {
   FirebaseDataProvider,
   RAFirebaseOptions,
 } from "react-admin-firebase";
-import { getFunctions } from "firebase/functions";
+import { connectFunctionsEmulator, getFunctions } from "firebase/functions";
 import { DataProvider } from "react-admin";
 import { getStorage } from "firebase/storage";
 import useFirebaseEmulator from "config";
@@ -14,12 +14,24 @@ const options: RAFirebaseOptions = {};
 const isProd = process.env.NODE_ENV === "production";
 
 export const dataProviderLegacy = FirebaseDataProvider(config, options);
-export const authProvider = FirebaseAuthProvider(config, options);
+const authProviderLegacy = FirebaseAuthProvider(config, options);
 export const db = dataProviderLegacy.app.firestore();
 export const cloudFunctions = getFunctions();
 export const storage = getStorage();
 
-if (useFirebaseEmulator && !isProd) db.useEmulator("localhost", 8090);
+if (useFirebaseEmulator && !isProd) {
+  dataProviderLegacy.app.auth().useEmulator("http://localhost:9099");
+  db.useEmulator("localhost", 8090);
+  connectFunctionsEmulator(cloudFunctions, "localhost", 5001);
+}
+
+export const authProvider = {
+  ...authProviderLegacy,
+  logout: async (params: any) => {
+    localStorage.clear();
+    return await authProviderLegacy.logout(params);
+  },
+};
 
 const getCustomConvertor = async (
   resource: string,

@@ -27,6 +27,14 @@ export const getTestData = () => {
     studentId: null,
     facialData: null,
     wantedPersonId: null,
+    tenant: "",
+    student: {
+      name: "",
+      class: "",
+    },
+    studentIds: [],
+    studentConfirmed: "",
+    ip: "",
   };
 
   const reportData: Report[] = [

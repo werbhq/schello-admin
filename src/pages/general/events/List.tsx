@@ -10,8 +10,11 @@ import {
   UrlField,
 } from "react-admin";
 import { eventModes } from "./Constants";
+import useTenant from "hooks/useTenant";
 
 export const EventList = () => {
+  const tenant = useTenant();
+
   const filters = [
     <SearchInput source="title" alwaysOn resettable />,
     <SelectInput source="mode" choices={eventModes} resettable />,
@@ -19,7 +22,7 @@ export const EventList = () => {
   ];
 
   return (
-    <List filters={filters}>
+    <List filters={filters} filterDefaultValues={{ tenant }}>
       <Datagrid rowClick="show">
         <TextField source="mode" />
         <TextField source="title" />

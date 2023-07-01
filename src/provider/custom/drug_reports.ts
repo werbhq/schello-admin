@@ -54,7 +54,13 @@ export const DrugReportsProvider: DataProviderCustom = {
   },
 
   update: async (resource, params) => {
-    await ReportAPI.update(params.data.id, params.data.status);
+    const data = await ReportAPI.update(
+      params.data.id,
+      params.data.status,
+      params.data.studentConfirmed
+    );
+
+    if (data.error) throw Error(data.error);
 
     return {
       data: params.data,

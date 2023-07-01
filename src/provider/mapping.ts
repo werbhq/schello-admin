@@ -10,7 +10,7 @@ const MAPPING = {
     VIDEO: "general-video",
     EVENTS: "events",
   },
-  STUDENTS: "students",
+  STUDENTS: "student-reports",
   WANTED_LIST: "wanted-list",
   CONFIG: {
     COLLECTION_NAME: "config",
@@ -20,6 +20,7 @@ const MAPPING = {
     PASSWORD: "/change-password",
     REPORT_MAP: "/report-map",
     WANTED_MAP: "/wanted-map",
+    ATTENDO: "https://attendo-admin.netlify.app/",
   },
 };
 

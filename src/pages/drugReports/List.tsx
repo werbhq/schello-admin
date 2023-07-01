@@ -18,6 +18,7 @@ import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import LoopIcon from "@mui/icons-material/Loop";
 import DoneIcon from "@mui/icons-material/Done";
 import { Report } from "types/Report";
+import useIsExcise from "hooks/useIsExcise";
 
 const BulkActionButtons = () => (
   <>
@@ -40,8 +41,20 @@ const BulkActionButtons = () => (
 );
 
 export const DrugListDataGrid = () => {
+  const isExcise = useIsExcise();
+
   return (
     <Datagrid rowClick="show" bulkActionButtons={<BulkActionButtons />}>
+      {isExcise && (
+        <FunctionField
+          source="tenant"
+          label="School"
+          render={(e: Report) => {
+            return `${e.tenant?.replace("-", " ").toLocaleUpperCase()}`;
+          }}
+        />
+      )}
+
       <DateField source="dateIncident" locales={"en-GB"} />
       <DateField
         source="timeFrom"
@@ -75,16 +88,8 @@ export const DrugListDataGrid = () => {
         )}
       />
       <ReferenceField
-        source="studentId"
+        source="studentConfirmed"
         reference={MAPPING.STUDENTS}
-        link="show"
-        emptyText="-"
-      >
-        <TextField source="name" />
-      </ReferenceField>
-      <ReferenceField
-        source="wantedPersonId"
-        reference={MAPPING.WANTED_LIST}
         link="show"
         emptyText="-"
       >

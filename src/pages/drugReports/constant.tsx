@@ -13,11 +13,16 @@ export const REPORT_STATUS = {
   INPROGRESS: "IN-PROGRESS",
   NEW: "NEW",
   SPAM: "SPAM",
+  ESCALATED: "ESCALATED",
 };
 
-export const STATUS_TYPE = ["NEW", "IN-PROGRESS", "DONE", "SPAM"].map(
-  convertSingleValueListToSelectList
-);
+export const STATUS_TYPE = [
+  "NEW",
+  "IN-PROGRESS",
+  "DONE",
+  "SPAM",
+  "ESCALATED",
+].map(convertSingleValueListToSelectList);
 
 export const STATUS_COLOR = new Map<
   Report["status"],
@@ -27,4 +32,5 @@ export const STATUS_COLOR = new Map<
   ["IN-PROGRESS", "warning"],
   ["DONE", "success"],
   ["SPAM", "error"],
+  ["ESCALATED", "error"],
 ]);

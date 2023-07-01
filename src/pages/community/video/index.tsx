@@ -4,6 +4,7 @@ import GeneralVideoIndex from "pages/general/video";
 
 const CommunityVideo: ResourceProps = {
   ...GeneralVideoIndex,
+  create: undefined,
   name: MAPPING.COMMUNITY.VIDEO,
 };
 

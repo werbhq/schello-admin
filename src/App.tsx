@@ -16,7 +16,6 @@ import DashBoard from "pages/dashboard/Dashboard";
 import DrugReport from "pages/drugReports";
 import Events from "pages/general/events";
 import ReportMapping from "pages/map/pages/report";
-import WantedMapping from "pages/map/pages/wanted";
 import CommunityVideo from "pages/community/video";
 import CommunityArticle from "pages/community/article";
 import GeneralNews from "pages/general/news";
@@ -24,7 +23,7 @@ import GoogleNews from "pages/general/google-news";
 import GeneralVideo from "pages/general/video";
 import Students from "pages/students";
 import ChangePassword from "pages/changePassword";
-import WantedList from "pages/wantedList";
+import { EXCISE_TENANT } from "config";
 
 const myTheme: RaThemeOptions = {
   ...defaultTheme,
@@ -54,27 +53,37 @@ const App = () => (
     dashboard={DashBoard}
     layout={CustomLayout}
   >
-    <Resource {...DrugReport} />
-    <Resource {...Events} />
-    <Resource {...CommunityArticle} />
-    <Resource {...CommunityVideo} />
-    <Resource {...GeneralNews} />
-    <Resource {...GoogleNews} />
-    <Resource {...GeneralVideo} />
-    <Resource {...Students} />
-    <Resource {...WantedList} />
+    {({ tenant }) => {
+      const isExcise = tenant === EXCISE_TENANT;
+      return (
+        <>
+          <Resource
+            {...DrugReport}
+            edit={isExcise ? undefined : DrugReport.edit}
+          />
+          <Resource {...Events} />
 
-    <CustomRoutes>
-      <Route
-        path={MAPPING.ROUTER_PATH.REPORT_MAP}
-        element={<ReportMapping />}
-      />
-      <Route
-        path={MAPPING.ROUTER_PATH.WANTED_MAP}
-        element={<WantedMapping />}
-      />
-      <Route path={MAPPING.ROUTER_PATH.PASSWORD} element={<ChangePassword />} />
-    </CustomRoutes>
+          {!isExcise && <Resource {...CommunityArticle} />}
+          {!isExcise && <Resource {...CommunityVideo} />}
+
+          {isExcise && <Resource {...GeneralNews} />}
+          {isExcise && <Resource {...GoogleNews} />}
+          {isExcise && <Resource {...GeneralVideo} />}
+
+          <Resource {...Students} />
+          <CustomRoutes>
+            <Route
+              path={MAPPING.ROUTER_PATH.REPORT_MAP}
+              element={<ReportMapping />}
+            />
+            <Route
+              path={MAPPING.ROUTER_PATH.PASSWORD}
+              element={<ChangePassword />}
+            />
+          </CustomRoutes>
+        </>
+      );
+    }}
   </Admin>
 );
 
