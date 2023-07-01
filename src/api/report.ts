@@ -45,9 +45,10 @@ class ReportAPI {
     studentConfirmed?: string
   ) => {
     const passwordHeader = await ReportsPassAuth.getHeaders();
+    const studentId = studentConfirmed ? `${studentConfirmed}` : null;
     const { data } = await baseApi.patch(
       `/report`,
-      { ids: [id], status, studentConfirmed },
+      { ids: [id], status, studentConfirmed: studentId },
       passwordHeader ?? {}
     );
     if (data.error) return data;
