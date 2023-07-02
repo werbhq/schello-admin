@@ -7,6 +7,10 @@ import {
   FunctionField,
   ReferenceArrayField,
   Datagrid,
+  TopToolbar,
+  EditButton,
+  useRecordContext,
+  useDataProvider,
 } from "react-admin";
 import AuthenticatedExcise from "components/auth/AuthenticatedExcise";
 import MAPPING from "provider/mapping";
@@ -16,13 +20,34 @@ import LocationField from "./components/LocationField";
 import { FacialDataField } from "components/face/FaceField";
 import { Report } from "types/Report";
 import useIsExcise from "hooks/useIsExcise";
+import { useEffect } from "react";
+
+const Actions = () => {
+  const record = useRecordContext<Report>();
+  const dataProvider = useDataProvider();
+
+  useEffect(() => {
+    if (record) {
+      dataProvider
+        .getMany(MAPPING.STUDENTS, {
+          ids: record.studentIds,
+        })
+        .then(() => {});
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [record]);
+
+  return (
+    <TopToolbar>{record?.status !== "ESCALATED" && <EditButton />}</TopToolbar>
+  );
+};
 
 const DrugShow = () => {
   const isExcise = useIsExcise();
 
   return (
     <AuthenticatedExcise>
-      <Show>
+      <Show actions={<Actions />}>
         <SimpleShowLayout>
           {isExcise && (
             <FunctionField
