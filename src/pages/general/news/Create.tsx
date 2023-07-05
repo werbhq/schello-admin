@@ -9,12 +9,18 @@ import {
 import { newsList } from "./constant";
 import { RichTextInput } from "ra-input-rich-text";
 import { useState } from "react";
+import useTenant from "hooks/useTenant";
 
-const ArticleCreate = () => {
+const NewsCreate = () => {
+  const tenant = useTenant();
+  const transform = (data: any) => ({
+    ...data,
+    tenant,
+  });
   const [type, setType] = useState(newsList[1].id);
 
   return (
-    <Create redirect="show">
+    <Create redirect="show" transform={transform}>
       <SimpleForm>
         <TextInput source="title" required />
         <SelectInput
@@ -33,4 +39,4 @@ const ArticleCreate = () => {
   );
 };
 
-export default ArticleCreate;
+export default NewsCreate;

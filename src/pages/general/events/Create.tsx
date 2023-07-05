@@ -10,12 +10,14 @@ import {
 } from "react-admin";
 import { eventModes } from "./Constants";
 import useTenant from "hooks/useTenant";
+import { Timestamp } from "firebase/firestore";
 
 const EventCreate = () => {
   const tenant = useTenant();
   const transform = (data: any) => ({
     ...data,
     tenant,
+    timestamp: Timestamp.fromDate(new Date()),
   });
 
   return (
